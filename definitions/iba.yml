@@ -1,0 +1,9 @@
+IBAMappingObject:
+  type: object
+  required:
+    - "signal_id"
+    - "storage_id"
+  properties:
+    id:
+      type: "integer"
+      example: 1

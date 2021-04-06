@@ -1,0 +1,25 @@
+get:
+  tags:
+    - "swagger"
+  summary: "Get swagger json"
+  description: ""
+  operationId: "getSwaggerJSON"
+  produces:
+    - "application/json"
+  responses:
+    200:
+      description: "OK"
+      schema:
+        type: object
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "definitions/errors.yml#/ErrorResponse"
+    429:
+      description: "Too Many Requests"
+      schema:
+        $ref: "definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "definitions/errors.yml#/ErrorResponse"

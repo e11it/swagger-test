@@ -1,0 +1,9 @@
+ErrorResponse:
+  type: object
+  properties:
+    message:
+      type: "string"
+      example: "Something bad happens."
+    code:
+      type: "integer"
+      example: 300
