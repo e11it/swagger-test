@@ -58,10 +58,6 @@ put:
       description: "Not found"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
-    429:
-      description: "Too Many Requests"
-      schema:
-        $ref: "../../definitions/errors.yml#/ErrorResponse"
     500:
       description: "Internal server error"
       schema:

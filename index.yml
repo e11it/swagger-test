@@ -14,9 +14,10 @@ tags:
 paths:
   /swagger.json:
     $ref: paths/swagger.json.yml
-    
+
   ########################################################
   # iba
+  # servers
   /ibas/servers/${iba_server_id}:
     $ref: paths/ibas/iba.yml
 
@@ -24,4 +25,12 @@ paths:
     $ref: paths/ibas/server_signals.yml
 
   /ibas/servers/${iba_server_id}/signals/mapping:
-    $ref: paths/ibas/server_signals_mapping.yml    
+    $ref: paths/ibas/server_signals_mapping.yml
+
+  # gates, mounts
+  /ibas/gates/${gate}/mnts/${mnt}/signals/mapping:
+    $ref: paths/ibas/gate_mnt_signals_mapping.yml
+
+  # topics
+#  /ibas/topics/${topic}/mapping:
+#    $ref: paths/ibas/server_signals_mapping.yml

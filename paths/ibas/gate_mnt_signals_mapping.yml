@@ -1,15 +1,20 @@
 parameters:
-  - name: iba_server_id
+  - name: gate
     in: path
-    description: "IBA Server ID"
-    type: integer
+    description: "IBA Gate"
+    type: string
+    required: true
+  - name: mnt
+    in: path
+    description: "IBA Mountpoint"
+    type: string
     required: true
 get:
   tags:
     - "iba"
-  summary: "Return IBA signal mapping by server ID"
+  summary: "Return IBA signal mapping by gate and mountpoint"
   description: ""
-  operationId: "getIBAMappingByServerID"
+  operationId: "getIBAMappingByGateAndMount"
   produces:
   - "application/json"
   responses:

@@ -27,6 +27,6 @@ get:
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
     404:
-      description: "Client not found"
+      description: "IBA Server not found"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
