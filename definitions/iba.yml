@@ -1,13 +1,27 @@
 IBAMappingObject:
   type: object
   required:
-    - "signal_id"
     - "storage_id"
+    - "module_number"
+    - "number_in_module"
+    - "is_digital"
   properties:
-    signal_id:
-      type: "string"
-      example: "[1.124]"
-      description: "IBA signal ID"
     storage_id:
+      type: "integer"
+      example: 1
+    module_number:
+      type: "integer"
+      example: 1
+    number_in_module:
+      type: "integer"
+      exmaple: 102
+    is_digital: 
+      type: boolean
+      example: true
+
+IBAServer:
+  type: object
+  properties:
+    id:
       type: "integer"
       example: 1

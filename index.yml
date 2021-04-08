@@ -15,7 +15,13 @@ paths:
   /swagger.json:
     $ref: paths/swagger.json.yml
     
-    ########################################################
-    # iba
+  ########################################################
+  # iba
+  /ibas/servers/${iba_server_id}:
+    $ref: paths/ibas/iba.yml
+
+  /ibas/servers/${iba_server_id}/signals:
+    $ref: paths/ibas/server_signals.yml
+
   /ibas/servers/${iba_server_id}/signals/mapping:
     $ref: paths/ibas/server_signals_mapping.yml    

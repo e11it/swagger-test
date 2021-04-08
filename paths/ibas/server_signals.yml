@@ -1,0 +1,68 @@
+parameters:
+  - name: iba_server_id
+    in: path
+    description: "IBA Server ID"
+    type: integer
+    required: true
+
+put:
+  tags:
+    - "iba"
+  summary: "Register new signal for IBA Server(batch mode)"
+  description: ""
+  operationId: "registerSignal"
+  consumes:
+    - "application/json"
+  produces:
+    - "application/json"
+  parameters:
+    - in: "body"
+      name: "body"
+      description: "Signal object."
+      required: true
+      schema:
+        type: object
+        required:
+          - "module_number"
+          - "number_in_module"
+          - "is_digital"
+          - "type"
+        properties:
+          module_number:
+            type: "integer"
+          number_in_module:
+            type: "integer"
+          is_digital: 
+            type: boolean
+          type:
+            type: string
+            enum:
+              - "bool"
+              - "real"
+              - "double"
+              - "int"
+  responses:
+    200:
+      description: "OK"
+      schema:
+        $ref: "../../definitions/iba.yml#/IBAMappingObject"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    429:
+      description: "Too Many Requests"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
