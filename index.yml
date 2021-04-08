@@ -1,30 +1,21 @@
 swagger: "2.0"
 host: "localhost"
 basePath: "/v1"
-tags:
-  - name: "swagger"
 schemes:
   - "http"
+  - "https"
 info:
   description: "Сервис мета информации"
   version: "1.0.0"
-  title: ""
+  title: "Metadata Service"
+tags:
+  - name: "swagger"
+  - name: "iba"
 paths:
   /swagger.json:
     $ref: paths/swagger.json.yml
-  ########################################################
-  # iba
-
-  /iba/server/{iba_server_id}/signals:
-    $ref: paths/iba/server_signals.yaml
-  ########################################################
-  # clients
-
-  /clients:
-    $ref: paths/clients/clients.yml
-
-  ########################################################
-  # privates
-
-  /privates/clients/{client_id}/tags/{tags_ids}:
-    $ref: paths/privates/tags.yml
+    
+    ########################################################
+    # iba
+  /ibas/servers/${iba_server_id}/signals/mapping:
+    $ref: paths/ibas/server_signals_mapping.yml    

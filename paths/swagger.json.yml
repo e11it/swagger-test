@@ -14,12 +14,12 @@ get:
     401:
       description: "Unauthorized"
       schema:
-        $ref: "definitions/errors.yml#/ErrorResponse"
+        $ref: "../definitions/errors.yml#/ErrorResponse"
     429:
       description: "Too Many Requests"
       schema:
-        $ref: "definitions/errors.yml#/ErrorResponse"
+        $ref: "../definitions/errors.yml#/ErrorResponse"
     500:
       description: "Internal server error"
       schema:
-        $ref: "definitions/errors.yml#/ErrorResponse"
+        $ref: "../definitions/errors.yml#/ErrorResponse"

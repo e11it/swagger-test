@@ -1,0 +1,224 @@
+{
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Сервис мета информации",
+    "title": "Metadata Service",
+    "version": "1.0.0"
+  },
+  "host": "localhost",
+  "basePath": "/v1",
+  "paths": {
+    "/ibas/servers/${iba_server_id}/signals/mapping": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Return IBA signal mapping",
+        "operationId": "getIBAMappingByServer",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "signal_id",
+                      "storage_id"
+                    ],
+                    "properties": {
+                      "signal_id": {
+                        "description": "IBA signal ID",
+                        "type": "string",
+                        "example": "[1.124]"
+                      },
+                      "storage_id": {
+                        "type": "integer",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Rule not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "integer",
+          "description": "IBA Server ID",
+          "name": "iba_server_id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/swagger.json": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "swagger"
+        ],
+        "summary": "Get swagger json",
+        "operationId": "getSwaggerJSON",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "swagger"
+    },
+    {
+      "name": "iba"
+    }
+  ]
+}

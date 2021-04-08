@@ -1,0 +1,31 @@
+get:
+  tags:
+  - "iba"
+  summary: "Get IBA Server by id"
+  description: ""
+  operationId: "getIBAServer"
+  produces:
+  - "application/json"
+  parameters:
+    - name: client_id
+      in: path
+      description: "Client ID"
+      type: integer
+      required: true
+  responses:
+    200:
+      description: "OK"
+      schema:
+        $ref: "definitions/clients.yml#/ClientObject"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Client not found"
+      schema:
+        $ref: "definitions/errors.yml#/ErrorResponse"

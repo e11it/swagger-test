@@ -1,0 +1,44 @@
+parameters:
+  - name: iba_server_id
+    in: path
+    description: "IBA Server ID"
+    type: integer
+    required: true
+get:
+  tags:
+    - "iba"
+  summary: "Return IBA signal mapping"
+  description: ""
+  operationId: "getIBAMappingByServer"
+  produces:
+  - "application/json"
+  responses:
+    200:
+      description: "OK"
+      schema:
+        type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: "../../definitions/iba.yml#/IBAMappingObject"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Rule not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    429:
+      description: "Too Many Requests"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"

@@ -4,6 +4,10 @@ IBAMappingObject:
     - "signal_id"
     - "storage_id"
   properties:
-    id:
+    signal_id:
+      type: "string"
+      example: "[1.124]"
+      description: "IBA signal ID"
+    storage_id:
       type: "integer"
       example: 1
