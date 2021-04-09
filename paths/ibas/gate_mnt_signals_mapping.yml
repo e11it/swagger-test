@@ -1,5 +1,5 @@
 parameters:
-  - name: gate
+  - name: gate_name
     in: path
     description: "IBA Gate"
     type: string

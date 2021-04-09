@@ -1,9 +1,16 @@
+parameters:
+  - name: gate_name
+    in: path
+    description: "IBA Gate name"
+    type: string
+    required: true
+
 get:
   tags:
   - "iba"
-  summary: "Get all Gates"
+  summary: "Get Gate by name"
   description: ""
-  operationId: "getIBAGates"
+  operationId: "getIBAGateByName"
   produces:
   - "application/json"
   responses:
@@ -13,9 +20,7 @@ get:
         type: object
         properties:
           items:
-            type: array
-            items:
-              $ref: "../../definitions/iba.yml#/IBAGate"
+            $ref: "../../definitions/iba.yml#/IBAGate"
     400:
       description: "Bad params supplied"
       schema:
@@ -25,16 +30,16 @@ get:
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
     404:
-      description: "IBA Server not found"
+      description: "IBA Gate not found"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
 
 put:
   tags:
   - "iba"
-  summary: "Register new Gate"
+  summary: "Modify Gate Metadata"
   description: ""
-  operationId: "registerIBAGate"
+  operationId: "updateIBAGateMetadata"
   consumes:
     - "application/json"
   produces:
@@ -42,14 +47,12 @@ put:
   parameters:
     - in: "body"
       name: "body"
-      description: "IBA Gate object."
+      description: "IBA Gate Meta object."
       required: true
       schema:
         type: object
-        required:
-          - "name"
         properties:
-          name:
+          comment:
             type: "string"
   responses:
     200:
@@ -64,4 +67,7 @@ put:
       description: "Unauthorized"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
-# todo: gate already registered
+    404:
+      description: "Not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"

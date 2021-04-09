@@ -1,9 +1,21 @@
+parameters:
+  - name: gate_name
+    in: path
+    description: "IBA Gate name"
+    type: string
+    required: true
+  - name: mnt
+    in: path
+    description: "IBA Gate mnt"
+    type: string
+    required: true
+
 get:
   tags:
   - "iba"
-  summary: "Get all Gates"
+  summary: "Get mnt for IBA Gate"
   description: ""
-  operationId: "getIBAGates"
+  operationId: "getIBAGateMnt"
   produces:
   - "application/json"
   responses:
@@ -13,9 +25,7 @@ get:
         type: object
         properties:
           items:
-            type: array
-            items:
-              $ref: "../../definitions/iba.yml#/IBAGate"
+            $ref: "../../definitions/iba.yml#/IBAGateMnt"
     400:
       description: "Bad params supplied"
       schema:
@@ -25,16 +35,16 @@ get:
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
     404:
-      description: "IBA Server not found"
+      description: "Mnt for Gate not found"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
 
 put:
   tags:
   - "iba"
-  summary: "Register new Gate"
+  summary: "Modify mnt Metadata"
   description: ""
-  operationId: "registerIBAGate"
+  operationId: "updateIBAGateMnt"
   consumes:
     - "application/json"
   produces:
@@ -42,20 +52,20 @@ put:
   parameters:
     - in: "body"
       name: "body"
-      description: "IBA Gate object."
+      description: "IBA GateMeta object."
       required: true
       schema:
         type: object
-        required:
-          - "name"
         properties:
-          name:
+          iba_server_id:
+            type: "integer"
+          comment:
             type: "string"
   responses:
     200:
       description: "OK"
       schema:
-        $ref: "../../definitions/iba.yml#/IBAGate"
+        $ref: "../../definitions/iba.yml#/IBAGateMnt"
     400:
       description: "Bad params supplied"
       schema:
@@ -64,4 +74,7 @@ put:
       description: "Unauthorized"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
-# todo: gate already registered
+    404:
+      description: "Not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"

@@ -12,7 +12,810 @@
   "host": "localhost",
   "basePath": "/v1",
   "paths": {
-    "/ibas/gates/${gate}/mnts/${mnt}/signals/mapping": {
+    "/ibas/gates": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get all Gates",
+        "operationId": "getIBAGates",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "comment": {
+                        "description": "Коментарий",
+                        "type": "string",
+                        "example": "Some notes"
+                      },
+                      "name": {
+                        "description": "Имя IBA Gate",
+                        "type": "string",
+                        "example": "p3apr3-pda-vc.p3.ia.nlmk"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "IBA Server not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Register new Gate",
+        "operationId": "registerIBAGate",
+        "parameters": [
+          {
+            "description": "IBA Gate object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "comment": {
+                  "description": "Коментарий",
+                  "type": "string",
+                  "example": "Some notes"
+                },
+                "name": {
+                  "description": "Имя IBA Gate",
+                  "type": "string",
+                  "example": "p3apr3-pda-vc.p3.ia.nlmk"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibas/gates/${gate_name}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get Gate by name",
+        "operationId": "getIBAGateByName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "comment": {
+                      "description": "Коментарий",
+                      "type": "string",
+                      "example": "Some notes"
+                    },
+                    "name": {
+                      "description": "Имя IBA Gate",
+                      "type": "string",
+                      "example": "p3apr3-pda-vc.p3.ia.nlmk"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "IBA Gate not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Modify Gate Metadata",
+        "operationId": "updateIBAGateMetadata",
+        "parameters": [
+          {
+            "description": "IBA Gate Meta object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "comment": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "comment": {
+                  "description": "Коментарий",
+                  "type": "string",
+                  "example": "Some notes"
+                },
+                "name": {
+                  "description": "Имя IBA Gate",
+                  "type": "string",
+                  "example": "p3apr3-pda-vc.p3.ia.nlmk"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "IBA Gate name",
+          "name": "gate_name",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/gates/${gate_name}/mnts": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get all mnt for IBA Gates",
+        "operationId": "getIBAGateMnts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "mnt",
+                      "iba_server_id"
+                    ],
+                    "properties": {
+                      "comment": {
+                        "description": "Коментарий",
+                        "type": "string",
+                        "example": "Some notes"
+                      },
+                      "iba_server_id": {
+                        "description": "IBA сервер ID",
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "mnt": {
+                        "description": "mnt",
+                        "type": "string",
+                        "example": "dp-khx"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "IBA Server not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Register new mnt for IBA Gate",
+        "operationId": "registerIBAGateMnt",
+        "parameters": [
+          {
+            "description": "IBA Gate mnt object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "mnt",
+                "iba_server_id"
+              ],
+              "properties": {
+                "comment": {
+                  "description": "Коментарий",
+                  "type": "string"
+                },
+                "iba_server_id": {
+                  "description": "IBA сервер ID",
+                  "type": "integer"
+                },
+                "mnt": {
+                  "description": "mnt",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "required": [
+                "mnt",
+                "iba_server_id"
+              ],
+              "properties": {
+                "comment": {
+                  "description": "Коментарий",
+                  "type": "string",
+                  "example": "Some notes"
+                },
+                "iba_server_id": {
+                  "description": "IBA сервер ID",
+                  "type": "integer",
+                  "example": 1
+                },
+                "mnt": {
+                  "description": "mnt",
+                  "type": "string",
+                  "example": "dp-khx"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "IBA Gate name",
+          "name": "gate_name",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/gates/${gate_name}/mnts/${mnt}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get mnt for IBA Gate",
+        "operationId": "getIBAGateMnt",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "mnt",
+                    "iba_server_id"
+                  ],
+                  "properties": {
+                    "comment": {
+                      "description": "Коментарий",
+                      "type": "string",
+                      "example": "Some notes"
+                    },
+                    "iba_server_id": {
+                      "description": "IBA сервер ID",
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "mnt": {
+                      "description": "mnt",
+                      "type": "string",
+                      "example": "dp-khx"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Mnt for Gate not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Modify mnt Metadata",
+        "operationId": "updateIBAGateMnt",
+        "parameters": [
+          {
+            "description": "IBA GateMeta object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "comment": {
+                  "type": "string"
+                },
+                "iba_server_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "required": [
+                "mnt",
+                "iba_server_id"
+              ],
+              "properties": {
+                "comment": {
+                  "description": "Коментарий",
+                  "type": "string",
+                  "example": "Some notes"
+                },
+                "iba_server_id": {
+                  "description": "IBA сервер ID",
+                  "type": "integer",
+                  "example": 1
+                },
+                "mnt": {
+                  "description": "mnt",
+                  "type": "string",
+                  "example": "dp-khx"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "IBA Gate name",
+          "name": "gate_name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "type": "string",
+          "description": "IBA Gate mnt",
+          "name": "mnt",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/gates/${gate_name}/mnts/${mnt}/signals/mapping": {
       "get": {
         "produces": [
           "application/json"
@@ -131,7 +934,7 @@
         {
           "type": "string",
           "description": "IBA Gate",
-          "name": "gate",
+          "name": "gate_name",
           "in": "path",
           "required": true
         },
@@ -159,8 +962,17 @@
             "description": "OK",
             "schema": {
               "type": "object",
+              "required": [
+                "id"
+              ],
               "properties": {
+                "comment": {
+                  "description": "Коментарий",
+                  "type": "string",
+                  "example": "Some notes"
+                },
                 "id": {
+                  "description": "IBA сервер ID",
                   "type": "integer",
                   "example": 1
                 }

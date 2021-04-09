@@ -28,6 +28,10 @@ IBAServer:
       type: "integer"
       example: 1
       description: "IBA сервер ID"
+    comment:
+      type: "string"
+      example: "Some notes"
+      description: "Коментарий"
 
 IBAGate:
   type: object
@@ -38,3 +42,27 @@ IBAGate:
       type: "string"
       example: "p3apr3-pda-vc.p3.ia.nlmk"
       description: "Имя IBA Gate"
+    comment:
+      type: "string"
+      example: "Some notes"
+      description: "Коментарий"
+
+IBAGateMnt:
+  type: object
+  required:
+    - "mnt"
+    - "iba_server_id"
+  properties:
+    mnt:
+      type: "string"
+      example: "dp-khx"
+      description: "mnt"
+    iba_server_id:
+      type: "integer"
+      example: 1
+      description: "IBA сервер ID"
+    comment:
+      type: "string"
+      example: "Some notes"
+      description: "Коментарий"
+      

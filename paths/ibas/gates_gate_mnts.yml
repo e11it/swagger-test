@@ -1,9 +1,16 @@
+parameters:
+  - name: gate_name
+    in: path
+    description: "IBA Gate name"
+    type: string
+    required: true
+
 get:
   tags:
   - "iba"
-  summary: "Get all Gates"
+  summary: "Get all mnt for IBA Gates"
   description: ""
-  operationId: "getIBAGates"
+  operationId: "getIBAGateMnts"
   produces:
   - "application/json"
   responses:
@@ -15,7 +22,7 @@ get:
           items:
             type: array
             items:
-              $ref: "../../definitions/iba.yml#/IBAGate"
+              $ref: "../../definitions/iba.yml#/IBAGateMnt"
     400:
       description: "Bad params supplied"
       schema:
@@ -32,9 +39,9 @@ get:
 put:
   tags:
   - "iba"
-  summary: "Register new Gate"
+  summary: "Register new mnt for IBA Gate"
   description: ""
-  operationId: "registerIBAGate"
+  operationId: "registerIBAGateMnt"
   consumes:
     - "application/json"
   produces:
@@ -42,20 +49,28 @@ put:
   parameters:
     - in: "body"
       name: "body"
-      description: "IBA Gate object."
+      description: "IBA Gate mnt object."
       required: true
       schema:
         type: object
         required:
-          - "name"
-        properties:
-          name:
+          - "mnt"
+          - "iba_server_id"
+        properties: # Можно ли просто сослаться на IBAGateMnt?
+          mnt:
             type: "string"
+            description: "mnt"
+          iba_server_id:
+            type: "integer"
+            description: "IBA сервер ID"
+          comment:
+            type: "string"
+            description: "Коментарий"
   responses:
     200:
       description: "OK"
       schema:
-        $ref: "../../definitions/iba.yml#/IBAGate"
+        $ref: "../../definitions/iba.yml#/IBAGateMnt"
     400:
       description: "Bad params supplied"
       schema:
@@ -64,4 +79,3 @@ put:
       description: "Unauthorized"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
-# todo: gate already registered
