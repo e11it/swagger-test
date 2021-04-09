@@ -21,7 +21,20 @@ IBAMappingObject:
 
 IBAServer:
   type: object
+  required:
+    - "id"
   properties:
     id:
       type: "integer"
       example: 1
+      description: "IBA сервер ID"
+
+IBAGate:
+  type: object
+  required:
+    - "name"
+  properties:
+    name:
+      type: "string"
+      example: "p3apr3-pda-vc.p3.ia.nlmk"
+      description: "Имя IBA Gate"

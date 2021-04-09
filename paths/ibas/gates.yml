@@ -1,0 +1,30 @@
+get:
+  tags:
+  - "iba"
+  summary: "Get all Gates"
+  description: ""
+  operationId: "getIBAGates"
+  produces:
+  - "application/json"
+  responses:
+    200:
+      description: "OK"
+      schema:
+        type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: "../../definitions/iba.yml#/IBAGate"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "IBA Server not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
