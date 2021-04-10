@@ -34,7 +34,7 @@ get:
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
 
-put:
+patch:
   tags:
   - "iba"
   summary: "Modify Gate Metadata"

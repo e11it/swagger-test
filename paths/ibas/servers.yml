@@ -1,23 +1,16 @@
-parameters:
-  - name: gate_name
-    in: path
-    description: "IBA Gate name"
-    type: string
-    required: true
-  - name: mnt
-    in: path
-    description: "IBA Gate mnt"
-    type: string
-    required: true
-
 get:
   tags:
-  - "iba"
-  summary: "Get mnt for IBA Gate"
+    - "iba"
+  summary: "Get IBA Servers"
   description: ""
-  operationId: "getIBAGateMnt"
+  operationId: "getIBAServers"
   produces:
-  - "application/json"
+    - "application/json"
+  parameters:
+    - in: query
+      name: name_mask
+      type: string
+      description: "Name mask for fuzzy search"
   responses:
     200:
       description: "OK"
@@ -25,7 +18,9 @@ get:
         type: object
         properties:
           items:
-            $ref: "../../definitions/iba.yml#/IBAGateMnt"
+            type: array
+            items:
+              $ref: "../../definitions/iba.yml#/IBAServer"
     400:
       description: "Bad params supplied"
       schema:
@@ -35,16 +30,16 @@ get:
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
     404:
-      description: "Mnt for Gate not found"
+      description: "IBA Servers not found"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
 
-patch:
+put:
   tags:
-  - "iba"
-  summary: "Modify mnt Metadata"
+    - "iba"
+  summary: "Register new Server"
   description: ""
-  operationId: "updateIBAGateMnt"
+  operationId: "registerIBAServer"
   consumes:
     - "application/json"
   produces:
@@ -52,20 +47,15 @@ patch:
   parameters:
     - in: "body"
       name: "body"
-      description: "IBA GateMeta object."
+      description: "IBA Server object"
       required: true
       schema:
-        type: object
-        properties:
-          iba_server_id:
-            type: "integer"
-          comment:
-            type: "string"
+        $ref: "../../definitions/iba.yml#/IBAServer"
   responses:
     200:
       description: "OK"
       schema:
-        $ref: "../../definitions/iba.yml#/IBAGateMnt"
+        $ref: "../../definitions/iba.yml#/IBAServer"
     400:
       description: "Bad params supplied"
       schema:
@@ -74,7 +64,7 @@ patch:
       description: "Unauthorized"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
-    404:
-      description: "Not found"
+    409:
+      description: "Conflict, server already registered"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"

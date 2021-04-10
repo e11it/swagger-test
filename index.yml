@@ -17,6 +17,9 @@ paths:
 
   ########################################################
   # iba
+  /ibas/servers/:
+    $ref: paths/ibas/servers.yml
+
   /ibas/servers/${iba_server_id}:
     $ref: paths/ibas/iba.yml
 
@@ -42,5 +45,5 @@ paths:
     $ref: paths/ibas/gate_mnt_signals_mapping.yml
 
   # topics
-#  /ibas/topics/${topic}/mapping:
-#    $ref: paths/ibas/server_signals_mapping.yml
+  /ibas/topics/${topic_name}/mapping:
+    $ref: paths/ibas/topics_signals_mapping.yml

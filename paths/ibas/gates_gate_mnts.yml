@@ -52,20 +52,7 @@ put:
       description: "IBA Gate mnt object."
       required: true
       schema:
-        type: object
-        required:
-          - "mnt"
-          - "iba_server_id"
-        properties: # Можно ли просто сослаться на IBAGateMnt?
-          mnt:
-            type: "string"
-            description: "mnt"
-          iba_server_id:
-            type: "integer"
-            description: "IBA сервер ID"
-          comment:
-            type: "string"
-            description: "Коментарий"
+        $ref: "../../definitions/iba.yml#/IBAGateMnt"
   responses:
     200:
       description: "OK"

@@ -37,7 +37,7 @@
                     ],
                     "properties": {
                       "comment": {
-                        "description": "Коментарий",
+                        "description": "Комментарий",
                         "type": "string",
                         "example": "Some notes"
                       },
@@ -85,7 +85,7 @@
             }
           },
           "404": {
-            "description": "IBA Server not found",
+            "description": "IBA Server gates not found",
             "schema": {
               "type": "object",
               "properties": {
@@ -143,7 +143,7 @@
               ],
               "properties": {
                 "comment": {
-                  "description": "Коментарий",
+                  "description": "Комментарий",
                   "type": "string",
                   "example": "Some notes"
                 },
@@ -186,6 +186,22 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "Conflict, gate already registered",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
           }
         }
       }
@@ -213,7 +229,7 @@
                   ],
                   "properties": {
                     "comment": {
-                      "description": "Коментарий",
+                      "description": "Комментарий",
                       "type": "string",
                       "example": "Some notes"
                     },
@@ -277,7 +293,7 @@
           }
         }
       },
-      "put": {
+      "patch": {
         "consumes": [
           "application/json"
         ],
@@ -315,7 +331,7 @@
               ],
               "properties": {
                 "comment": {
-                  "description": "Коментарий",
+                  "description": "Комментарий",
                   "type": "string",
                   "example": "Some notes"
                 },
@@ -413,7 +429,7 @@
                     ],
                     "properties": {
                       "comment": {
-                        "description": "Коментарий",
+                        "description": "Комментарий",
                         "type": "string",
                         "example": "Some notes"
                       },
@@ -509,16 +525,19 @@
               ],
               "properties": {
                 "comment": {
-                  "description": "Коментарий",
-                  "type": "string"
+                  "description": "Комментарий",
+                  "type": "string",
+                  "example": "Some notes"
                 },
                 "iba_server_id": {
                   "description": "IBA сервер ID",
-                  "type": "integer"
+                  "type": "integer",
+                  "example": 1
                 },
                 "mnt": {
                   "description": "mnt",
-                  "type": "string"
+                  "type": "string",
+                  "example": "dp-khx"
                 }
               }
             }
@@ -535,7 +554,7 @@
               ],
               "properties": {
                 "comment": {
-                  "description": "Коментарий",
+                  "description": "Комментарий",
                   "type": "string",
                   "example": "Some notes"
                 },
@@ -620,7 +639,7 @@
                   ],
                   "properties": {
                     "comment": {
-                      "description": "Коментарий",
+                      "description": "Комментарий",
                       "type": "string",
                       "example": "Some notes"
                     },
@@ -689,7 +708,7 @@
           }
         }
       },
-      "put": {
+      "patch": {
         "consumes": [
           "application/json"
         ],
@@ -731,7 +750,7 @@
               ],
               "properties": {
                 "comment": {
-                  "description": "Коментарий",
+                  "description": "Комментарий",
                   "type": "string",
                   "example": "Some notes"
                 },
@@ -947,6 +966,233 @@
         }
       ]
     },
+    "/ibas/servers/": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get IBA Servers",
+        "operationId": "getIBAServers",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Name mask for fuzzy search",
+            "name": "name_mask",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "name"
+                    ],
+                    "properties": {
+                      "comment": {
+                        "description": "Комментарий",
+                        "type": "string",
+                        "example": "Some notes"
+                      },
+                      "id": {
+                        "description": "IBA сервер ID",
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "name": {
+                        "description": "Имя IBA Server",
+                        "type": "string",
+                        "example": "iba-server-name.nlmk"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "IBA Servers not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Register new Server",
+        "operationId": "registerIBAServer",
+        "parameters": [
+          {
+            "description": "IBA Server object",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "comment": {
+                  "description": "Комментарий",
+                  "type": "string",
+                  "example": "Some notes"
+                },
+                "id": {
+                  "description": "IBA сервер ID",
+                  "type": "integer",
+                  "example": 1
+                },
+                "name": {
+                  "description": "Имя IBA Server",
+                  "type": "string",
+                  "example": "iba-server-name.nlmk"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "comment": {
+                  "description": "Комментарий",
+                  "type": "string",
+                  "example": "Some notes"
+                },
+                "id": {
+                  "description": "IBA сервер ID",
+                  "type": "integer",
+                  "example": 1
+                },
+                "name": {
+                  "description": "Имя IBA Server",
+                  "type": "string",
+                  "example": "iba-server-name.nlmk"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict, server already registered",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/ibas/servers/${iba_server_id}": {
       "get": {
         "produces": [
@@ -963,11 +1209,12 @@
             "schema": {
               "type": "object",
               "required": [
-                "id"
+                "id",
+                "name"
               ],
               "properties": {
                 "comment": {
-                  "description": "Коментарий",
+                  "description": "Комментарий",
                   "type": "string",
                   "example": "Some notes"
                 },
@@ -975,6 +1222,11 @@
                   "description": "IBA сервер ID",
                   "type": "integer",
                   "example": 1
+                },
+                "name": {
+                  "description": "Имя IBA Server",
+                  "type": "string",
+                  "example": "iba-server-name.nlmk"
                 }
               }
             }
@@ -1316,6 +1568,131 @@
           "type": "integer",
           "description": "IBA Server ID",
           "name": "iba_server_id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/topics/${topic_name}/mapping": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Return IBA signal mapping by topic name",
+        "operationId": "getIBAMappingByTopicName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "storage_id",
+                      "module_number",
+                      "number_in_module",
+                      "is_digital"
+                    ],
+                    "properties": {
+                      "is_digital": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "module_number": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "number_in_module": {
+                        "type": "integer",
+                        "exmaple": 102
+                      },
+                      "storage_id": {
+                        "type": "integer",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Server not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "IBA topic name",
+          "name": "topic_name",
           "in": "path",
           "required": true
         }

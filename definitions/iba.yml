@@ -23,15 +23,20 @@ IBAServer:
   type: object
   required:
     - "id"
+    - "name"
   properties:
     id:
       type: "integer"
       example: 1
       description: "IBA сервер ID"
+    name:
+      type: "string"
+      example: "iba-server-name.nlmk"
+      description: "Имя IBA Server"
     comment:
       type: "string"
       example: "Some notes"
-      description: "Коментарий"
+      description: "Комментарий"
 
 IBAGate:
   type: object
@@ -45,7 +50,7 @@ IBAGate:
     comment:
       type: "string"
       example: "Some notes"
-      description: "Коментарий"
+      description: "Комментарий"
 
 IBAGateMnt:
   type: object
@@ -64,5 +69,5 @@ IBAGateMnt:
     comment:
       type: "string"
       example: "Some notes"
-      description: "Коментарий"
+      description: "Комментарий"
       

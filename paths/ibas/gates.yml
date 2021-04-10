@@ -25,7 +25,7 @@ get:
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
     404:
-      description: "IBA Server not found"
+      description: "IBA Server gates not found"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
 
@@ -64,4 +64,7 @@ put:
       description: "Unauthorized"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
-# todo: gate already registered
+    409:
+      description: "Conflict, gate already registered"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"

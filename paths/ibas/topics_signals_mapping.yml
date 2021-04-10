@@ -1,0 +1,40 @@
+parameters:
+  - name: topic_name
+    in: path
+    description: "IBA topic name"
+    type: string
+    required: true
+get:
+  tags:
+    - "iba"
+  summary: "Return IBA signal mapping by topic name"
+  description: ""
+  operationId: "getIBAMappingByTopicName"
+  produces:
+  - "application/json"
+  responses:
+    200:
+      description: "OK"
+      schema:
+        type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: "../../definitions/iba.yml#/IBAMappingObject"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Server not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
