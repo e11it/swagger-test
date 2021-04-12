@@ -1,0 +1,11 @@
+image: docker-registry.dp.nlmk.com/nlmk-redoc-swagger:latest
+
+pages:
+  stage: deploy
+  script:
+  - redoc-cli bundle -o public/index.html index.yml
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
