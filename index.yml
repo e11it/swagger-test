@@ -47,3 +47,14 @@ paths:
   # topics
   /ibas/topics/${topic_name}/mapping:
     $ref: paths/ibas/topics_signals_mapping.yml
+
+  ########################################################
+  # core
+  /core/nodes:
+    $ref: paths/core/nodes.yml
+
+  /core/nodes/{node_id}:
+    $ref: paths/core/node.yml
+
+  /core/nodes/{node_id}/children:
+    $ref: paths/core/nodes_children.yml

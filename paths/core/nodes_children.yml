@@ -1,0 +1,72 @@
+get:
+  tags:
+    - "core"
+    - "nodes"
+  summary: "Get node children"
+  description: ""
+  operationId: "getNodeChildren"
+  produces:
+    - "application/json"
+  parameters:
+    - name: node_id
+      in: path
+      description: "Node ID"
+      type: integer
+      required: true
+    - in: query
+      name: limit
+      type: integer
+      default: 100
+      minimum: 1
+      maximum: 1000
+    - in: query
+      name: offset
+      type: integer
+      default: 0
+    - in: query
+      name: order_by
+      type: string
+      description: "Must contain string like asc(field) or desc(field)"
+      default: "asc(id)"
+      enum:
+        - "asc(id)"
+        - "desc(id)"
+        - "asc(created_at)"
+        - "desc(created_at)"
+        - "asc(updated_at)"
+        - "desc(updated_at)"
+    - in: query
+      name: name
+      type: string
+      required: false
+      description: "Filter by name"
+
+  responses:
+    200:
+      description: "OK"
+      schema:
+        type: object
+        properties:
+          total:
+            type: integer
+            example: 100
+          items:
+            type: array
+            items:
+              $ref: "../../definitions/core.yml#/NodeObject"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Node not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
