@@ -1,5 +1,13 @@
 image: docker-registry.dp.nlmk.com/nlmk-redoc-swagger:latest
 
+before_script:
+  - swagger-cli -v
+
+validate:
+  stage: deploy
+  script:
+    - make validate
+
 pages:
   stage: deploy
   script:

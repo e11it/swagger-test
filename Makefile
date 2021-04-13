@@ -1,3 +1,7 @@
+validate:
+	swagger flatten --with-expand ./index.yml --output=./swagger.json && \
+  	swagger validate ./swagger.json
+
 build:
 	swagger flatten --with-expand ./index.yml --output=./swagger.json
 
