@@ -1,7 +1,8 @@
 image: docker-registry.dp.nlmk.com/nlmk-redoc-swagger:latest
 
 before_script:
-  - swagger-cli -v
+  - swagger version
+  - redoc-cli --version
 
 validate:
   stage: deploy
