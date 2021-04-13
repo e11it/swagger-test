@@ -12,6 +12,977 @@
   "host": "localhost",
   "basePath": "/v1",
   "paths": {
+    "/core/nodes": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Get core nodes",
+        "operationId": "getCoreNodes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "name",
+                      "prev_id",
+                      "created_at",
+                      "updated_at"
+                    ],
+                    "properties": {
+                      "children": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "name",
+                          "prev_id",
+                          "full_name",
+                          "directory",
+                          "children",
+                          "created_at",
+                          "updated_at"
+                        ],
+                        "properties": {
+                          "children": {
+                            "$ref": "#/definitions/nodeWithSubtreeObject"
+                          },
+                          "created_at": {
+                            "description": "ISO 8601 format",
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2018-03-20T09:12:28.123Z"
+                          },
+                          "directory": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "name",
+                              "created_at",
+                              "updated_at"
+                            ],
+                            "properties": {
+                              "created_at": {
+                                "description": "ISO 8601 format",
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2018-03-20T09:12:28.123Z"
+                              },
+                              "description": {
+                                "type": "string",
+                                "pattern": "^.{2,200}$",
+                                "example": "Tag"
+                              },
+                              "id": {
+                                "type": "integer",
+                                "example": 1
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "some_tag"
+                              },
+                              "updated_at": {
+                                "description": "ISO 8601 format",
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2018-03-20T09:12:28.123Z"
+                              }
+                            }
+                          },
+                          "full_name": {
+                            "type": "string",
+                            "example": "root/sub/leaf/tag"
+                          },
+                          "id": {
+                            "type": "integer",
+                            "example": 1
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "some_rule"
+                          },
+                          "prev_id": {
+                            "type": "integer",
+                            "example": 0
+                          },
+                          "signals": {
+                            "type": "object"
+                          },
+                          "updated_at": {
+                            "description": "ISO 8601 format",
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2018-03-20T09:12:28.123Z"
+                          }
+                        }
+                      },
+                      "created_at": {
+                        "description": "ISO 8601 format",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2018-03-20T09:12:28.123Z"
+                      },
+                      "directory_id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "has_children": {
+                        "type": "boolean",
+                        "x-nullable": true,
+                        "x-omitempty": true,
+                        "example": true
+                      },
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "some_tag"
+                      },
+                      "prev_id": {
+                        "type": "integer",
+                        "example": 0
+                      },
+                      "signal_id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "updated_at": {
+                        "description": "ISO 8601 format",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2018-03-20T09:12:28.123Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Core nodes not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Create new core node",
+        "operationId": "createCoreNode",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date time as ISO 8601",
+            "name": "datetime",
+            "in": "query"
+          },
+          {
+            "description": "Rule params object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "prev_id"
+              ],
+              "properties": {
+                "comment": {
+                  "type": "string",
+                  "pattern": "^.{2,200}$",
+                  "example": "Comment"
+                },
+                "description": {
+                  "type": "string",
+                  "pattern": "^.{2,200}$",
+                  "example": "Tag"
+                },
+                "directory_id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "meta": {
+                  "type": "string",
+                  "pattern": "^.{2,200}$",
+                  "example": "meta"
+                },
+                "name": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
+                  "example": "node1"
+                },
+                "prev_id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "signal_id": {
+                  "type": "integer",
+                  "example": 1
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "prev_id",
+                "created_at",
+                "updated_at"
+              ],
+              "properties": {
+                "children": {
+                  "$ref": "#/definitions/nodeWithSubtreeObject"
+                },
+                "created_at": {
+                  "description": "ISO 8601 format",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2018-03-20T09:12:28.123Z"
+                },
+                "directory_id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "has_children": {
+                  "type": "boolean",
+                  "x-nullable": true,
+                  "x-omitempty": true,
+                  "example": true
+                },
+                "id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "some_tag"
+                },
+                "prev_id": {
+                  "type": "integer",
+                  "example": 0
+                },
+                "signal_id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "updated_at": {
+                  "description": "ISO 8601 format",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2018-03-20T09:12:28.123Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict, gate already registered",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/nodes/{node_id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Get node",
+        "operationId": "getNode",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Node ID",
+            "name": "node_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "prev_id",
+                "created_at",
+                "updated_at"
+              ],
+              "properties": {
+                "children": {
+                  "$ref": "#/definitions/nodeWithSubtreeObject"
+                },
+                "created_at": {
+                  "description": "ISO 8601 format",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2018-03-20T09:12:28.123Z"
+                },
+                "directory_id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "has_children": {
+                  "type": "boolean",
+                  "x-nullable": true,
+                  "x-omitempty": true,
+                  "example": true
+                },
+                "id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "some_tag"
+                },
+                "prev_id": {
+                  "type": "integer",
+                  "example": 0
+                },
+                "signal_id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "updated_at": {
+                  "description": "ISO 8601 format",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2018-03-20T09:12:28.123Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Node not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Delete node",
+        "operationId": "deleteNode",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Node ID",
+            "name": "node_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Node not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Update node",
+        "operationId": "updateNode",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Node ID",
+            "name": "node_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "object",
+            "description": "Rule params object.",
+            "name": "body",
+            "in": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "prev_id",
+                "created_at",
+                "updated_at"
+              ],
+              "properties": {
+                "children": {
+                  "$ref": "#/definitions/nodeWithSubtreeObject"
+                },
+                "created_at": {
+                  "description": "ISO 8601 format",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2018-03-20T09:12:28.123Z"
+                },
+                "directory_id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "has_children": {
+                  "type": "boolean",
+                  "x-nullable": true,
+                  "x-omitempty": true,
+                  "example": true
+                },
+                "id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "some_tag"
+                },
+                "prev_id": {
+                  "type": "integer",
+                  "example": 0
+                },
+                "signal_id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "updated_at": {
+                  "description": "ISO 8601 format",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2018-03-20T09:12:28.123Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Node not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z",
+          "description": "Datetime as ISO 8601",
+          "name": "datetime",
+          "in": "query"
+        }
+      ]
+    },
+    "/core/nodes/{node_id}/children": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Get node children",
+        "operationId": "getNodeChildren",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Node ID",
+            "name": "node_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer",
+            "default": 100,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 0,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "asc(id)",
+              "desc(id)",
+              "asc(created_at)",
+              "desc(created_at)",
+              "asc(updated_at)",
+              "desc(updated_at)"
+            ],
+            "type": "string",
+            "default": "asc(id)",
+            "description": "Must contain string like asc(field) or desc(field)",
+            "name": "order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Filter by name",
+            "name": "name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "name",
+                      "prev_id",
+                      "created_at",
+                      "updated_at"
+                    ],
+                    "properties": {
+                      "children": {
+                        "$ref": "#/definitions/nodeWithSubtreeObject"
+                      },
+                      "created_at": {
+                        "description": "ISO 8601 format",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2018-03-20T09:12:28.123Z"
+                      },
+                      "directory_id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "has_children": {
+                        "type": "boolean",
+                        "x-nullable": true,
+                        "x-omitempty": true,
+                        "example": true
+                      },
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "some_tag"
+                      },
+                      "prev_id": {
+                        "type": "integer",
+                        "example": 0
+                      },
+                      "signal_id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "updated_at": {
+                        "description": "ISO 8601 format",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2018-03-20T09:12:28.123Z"
+                      }
+                    }
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "example": 100
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Node not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/ibas/gates": {
       "get": {
         "produces": [
@@ -1749,6 +2720,99 @@
           }
         }
       }
+    }
+  },
+  "definitions": {
+    "directoryObject": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "created_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "Tag"
+        },
+        "id": {
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "some_tag"
+        },
+        "updated_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        }
+      }
+    },
+    "nodeWithSubtreeObject": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "prev_id",
+        "full_name",
+        "directory",
+        "children",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "children": {
+          "$ref": "#/definitions/nodeWithSubtreeObject"
+        },
+        "created_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        },
+        "directory": {
+          "$ref": "#/definitions/directoryObject"
+        },
+        "full_name": {
+          "type": "string",
+          "example": "root/sub/leaf/tag"
+        },
+        "id": {
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "some_rule"
+        },
+        "prev_id": {
+          "type": "integer",
+          "example": 0
+        },
+        "signals": {
+          "$ref": "#/definitions/signalsWithSubtreeObject"
+        },
+        "updated_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        }
+      }
+    },
+    "signalsWithSubtreeObject": {
+      "type": "object"
     }
   },
   "tags": [
