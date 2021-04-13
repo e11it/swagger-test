@@ -17,7 +17,7 @@ CreateNode:
     description:
       type: string
       pattern: "^.{2,200}$"
-      example: "Tag"
+      example: "Description"
     comment:
       type: string
       pattern: "^.{2,200}$"
@@ -29,6 +29,8 @@ CreateNode:
     prev_id:
       type: integer
       example: 1
+    acl:
+      type: object
 
 NodeObject:
   type: object
@@ -44,7 +46,7 @@ NodeObject:
       example: 1
     name:
       type: string
-      example: "some_tag"
+      example: "some_node"
     prev_id:
       type: integer
       example: 0
@@ -73,6 +75,8 @@ NodeObject:
       x-nullable: true
       x-omitempty: true
       example: true
+    acl:
+      type: object
 
 NodeWithSubtreeObject:
   type: object
@@ -97,13 +101,13 @@ NodeWithSubtreeObject:
       example: 0
     full_name:
       type: string
-      example: "root/sub/leaf/tag"
+      example: "root/sub/leaf/node"
     directory:
       type: object
       $ref: "#/DirectoryObject"
     signals:
       type: object
-      $ref: "#/SignalsWithSubtreeObject"
+      $ref: "#/SignalWithSubtreeObject"
     children:
       type: array
       items:
@@ -119,14 +123,95 @@ NodeWithSubtreeObject:
       example: "2018-03-20T09:12:28.123Z"
       description: "ISO 8601 format"
 
-# todo
-SignalsWithSubtreeObject:
+SignalWithSubtreeObject:
   type: object
+  required:
+    - "id"
+    - "class"
+    - "value_type"
+    - "children"
+    - "created_at"
+    - "updated_at"
+  properties:
+    id:
+      type: integer
+      example: 1
+    unit:
+      type: string
+      x-nullable: true
+      x-omitempty: true
+      example: "C"
+      description: "Measurement unit"
+    value_type:
+      type: string
+      example: "real"
+      description: "Value data type"
+      enum:
+        - "undefined"
+        - "integer"
+        - "real"
+        - "boolean"
+    class:
+      type: string
+      example: "analog"
+      description: ""
+      enum:
+        - "analog"
+        - "discrete"
+    children:
+      type: array
+      items:
+      $ref: "#/SignalWithSubtreeObject"
+    created_at:
+      type: string
+      format: "date-time"
+      example: "2018-03-20T09:12:28.123Z"
+      description: "ISO 8601 format"
+    updated_at:
+      type: string
+      format: "date-time"
+      example: "2018-03-20T09:12:28.123Z"
+      description: "ISO 8601 format"
+    acl:
+      type: object
 
-
-# todo
 UpdateNode:
   type: object
+  properties:
+    signal_id:
+      type: integer
+      example: 1
+      x-nullable: true
+    directory_id:
+      type: integer
+      example: 1
+      x-nullable: true
+    name:
+      type: string
+      pattern: "^[A-Za-z0-9_.]{2,50}$"
+      example: "node1"
+      x-nullable: true
+    description:
+      type: string
+      pattern: "^.{2,200}$"
+      example: "Description"
+      x-nullable: true
+    comment:
+      type: string
+      pattern: "^.{2,200}$"
+      example: "Comment"
+      x-nullable: true
+    meta:
+      type: string
+      pattern: "^.{2,200}$"
+      example: "meta"
+      x-nullable: true
+    prev_id:
+      type: integer
+      example: 1
+      x-nullable: true
+    acl:
+      type: object
 
 DirectoryObject:
   type: object
@@ -141,11 +226,11 @@ DirectoryObject:
       example: 1
     name:
       type: string
-      example: "some_tag"
+      example: "some_directory"
     description:
       type: string
       pattern: "^.{2,200}$"
-      example: "Tag"
+      example: "Description"
     created_at:
       type: string
       format: "date-time"

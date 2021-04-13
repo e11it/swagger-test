@@ -41,90 +41,11 @@
                       "updated_at"
                     ],
                     "properties": {
+                      "acl": {
+                        "type": "object"
+                      },
                       "children": {
-                        "type": "object",
-                        "required": [
-                          "id",
-                          "name",
-                          "prev_id",
-                          "full_name",
-                          "directory",
-                          "children",
-                          "created_at",
-                          "updated_at"
-                        ],
-                        "properties": {
-                          "children": {
-                            "$ref": "#/definitions/nodeWithSubtreeObject"
-                          },
-                          "created_at": {
-                            "description": "ISO 8601 format",
-                            "type": "string",
-                            "format": "date-time",
-                            "example": "2018-03-20T09:12:28.123Z"
-                          },
-                          "directory": {
-                            "type": "object",
-                            "required": [
-                              "id",
-                              "name",
-                              "created_at",
-                              "updated_at"
-                            ],
-                            "properties": {
-                              "created_at": {
-                                "description": "ISO 8601 format",
-                                "type": "string",
-                                "format": "date-time",
-                                "example": "2018-03-20T09:12:28.123Z"
-                              },
-                              "description": {
-                                "type": "string",
-                                "pattern": "^.{2,200}$",
-                                "example": "Tag"
-                              },
-                              "id": {
-                                "type": "integer",
-                                "example": 1
-                              },
-                              "name": {
-                                "type": "string",
-                                "example": "some_tag"
-                              },
-                              "updated_at": {
-                                "description": "ISO 8601 format",
-                                "type": "string",
-                                "format": "date-time",
-                                "example": "2018-03-20T09:12:28.123Z"
-                              }
-                            }
-                          },
-                          "full_name": {
-                            "type": "string",
-                            "example": "root/sub/leaf/tag"
-                          },
-                          "id": {
-                            "type": "integer",
-                            "example": 1
-                          },
-                          "name": {
-                            "type": "string",
-                            "example": "some_rule"
-                          },
-                          "prev_id": {
-                            "type": "integer",
-                            "example": 0
-                          },
-                          "signals": {
-                            "type": "object"
-                          },
-                          "updated_at": {
-                            "description": "ISO 8601 format",
-                            "type": "string",
-                            "format": "date-time",
-                            "example": "2018-03-20T09:12:28.123Z"
-                          }
-                        }
+                        "$ref": "#/definitions/nodeWithSubtreeObject"
                       },
                       "created_at": {
                         "description": "ISO 8601 format",
@@ -148,7 +69,7 @@
                       },
                       "name": {
                         "type": "string",
-                        "example": "some_tag"
+                        "example": "some_node"
                       },
                       "prev_id": {
                         "type": "integer",
@@ -253,6 +174,9 @@
                 "prev_id"
               ],
               "properties": {
+                "acl": {
+                  "type": "object"
+                },
                 "comment": {
                   "type": "string",
                   "pattern": "^.{2,200}$",
@@ -261,7 +185,7 @@
                 "description": {
                   "type": "string",
                   "pattern": "^.{2,200}$",
-                  "example": "Tag"
+                  "example": "Description"
                 },
                 "directory_id": {
                   "type": "integer",
@@ -302,6 +226,9 @@
                 "updated_at"
               ],
               "properties": {
+                "acl": {
+                  "type": "object"
+                },
                 "children": {
                   "$ref": "#/definitions/nodeWithSubtreeObject"
                 },
@@ -327,7 +254,7 @@
                 },
                 "name": {
                   "type": "string",
-                  "example": "some_tag"
+                  "example": "some_node"
                 },
                 "prev_id": {
                   "type": "integer",
@@ -430,6 +357,9 @@
                 "updated_at"
               ],
               "properties": {
+                "acl": {
+                  "type": "object"
+                },
                 "children": {
                   "$ref": "#/definitions/nodeWithSubtreeObject"
                 },
@@ -455,7 +385,7 @@
                 },
                 "name": {
                   "type": "string",
-                  "example": "some_tag"
+                  "example": "some_node"
                 },
                 "prev_id": {
                   "type": "integer",
@@ -671,6 +601,9 @@
                 "updated_at"
               ],
               "properties": {
+                "acl": {
+                  "type": "object"
+                },
                 "children": {
                   "$ref": "#/definitions/nodeWithSubtreeObject"
                 },
@@ -696,7 +629,7 @@
                 },
                 "name": {
                   "type": "string",
-                  "example": "some_tag"
+                  "example": "some_node"
                 },
                 "prev_id": {
                   "type": "integer",
@@ -865,8 +798,151 @@
                       "updated_at"
                     ],
                     "properties": {
+                      "acl": {
+                        "type": "object"
+                      },
                       "children": {
-                        "$ref": "#/definitions/nodeWithSubtreeObject"
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "name",
+                          "prev_id",
+                          "full_name",
+                          "directory",
+                          "children",
+                          "created_at",
+                          "updated_at"
+                        ],
+                        "properties": {
+                          "children": {
+                            "$ref": "#/definitions/nodeWithSubtreeObject"
+                          },
+                          "created_at": {
+                            "description": "ISO 8601 format",
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2018-03-20T09:12:28.123Z"
+                          },
+                          "directory": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "name",
+                              "created_at",
+                              "updated_at"
+                            ],
+                            "properties": {
+                              "created_at": {
+                                "description": "ISO 8601 format",
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2018-03-20T09:12:28.123Z"
+                              },
+                              "description": {
+                                "type": "string",
+                                "pattern": "^.{2,200}$",
+                                "example": "Description"
+                              },
+                              "id": {
+                                "type": "integer",
+                                "example": 1
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "some_directory"
+                              },
+                              "updated_at": {
+                                "description": "ISO 8601 format",
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2018-03-20T09:12:28.123Z"
+                              }
+                            }
+                          },
+                          "full_name": {
+                            "type": "string",
+                            "example": "root/sub/leaf/node"
+                          },
+                          "id": {
+                            "type": "integer",
+                            "example": 1
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "some_rule"
+                          },
+                          "prev_id": {
+                            "type": "integer",
+                            "example": 0
+                          },
+                          "signals": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "class",
+                              "value_type",
+                              "children",
+                              "created_at",
+                              "updated_at"
+                            ],
+                            "properties": {
+                              "acl": {
+                                "type": "object"
+                              },
+                              "children": {
+                                "$ref": "#/definitions/signalWithSubtreeObject"
+                              },
+                              "class": {
+                                "type": "string",
+                                "enum": [
+                                  "analog",
+                                  "discrete"
+                                ],
+                                "example": "analog"
+                              },
+                              "created_at": {
+                                "description": "ISO 8601 format",
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2018-03-20T09:12:28.123Z"
+                              },
+                              "id": {
+                                "type": "integer",
+                                "example": 1
+                              },
+                              "unit": {
+                                "description": "Measurement unit",
+                                "type": "string",
+                                "x-nullable": true,
+                                "x-omitempty": true,
+                                "example": "C"
+                              },
+                              "updated_at": {
+                                "description": "ISO 8601 format",
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2018-03-20T09:12:28.123Z"
+                              },
+                              "value_type": {
+                                "description": "Value data type",
+                                "type": "string",
+                                "enum": [
+                                  "undefined",
+                                  "integer",
+                                  "real",
+                                  "boolean"
+                                ],
+                                "example": "real"
+                              }
+                            }
+                          },
+                          "updated_at": {
+                            "description": "ISO 8601 format",
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2018-03-20T09:12:28.123Z"
+                          }
+                        }
                       },
                       "created_at": {
                         "description": "ISO 8601 format",
@@ -890,7 +966,7 @@
                       },
                       "name": {
                         "type": "string",
-                        "example": "some_tag"
+                        "example": "some_node"
                       },
                       "prev_id": {
                         "type": "integer",
@@ -2741,7 +2817,7 @@
         "description": {
           "type": "string",
           "pattern": "^.{2,200}$",
-          "example": "Tag"
+          "example": "Description"
         },
         "id": {
           "type": "integer",
@@ -2749,7 +2825,7 @@
         },
         "name": {
           "type": "string",
-          "example": "some_tag"
+          "example": "some_directory"
         },
         "updated_at": {
           "description": "ISO 8601 format",
@@ -2786,7 +2862,7 @@
         },
         "full_name": {
           "type": "string",
-          "example": "root/sub/leaf/tag"
+          "example": "root/sub/leaf/node"
         },
         "id": {
           "type": "integer",
@@ -2801,7 +2877,7 @@
           "example": 0
         },
         "signals": {
-          "$ref": "#/definitions/signalsWithSubtreeObject"
+          "$ref": "#/definitions/signalWithSubtreeObject"
         },
         "updated_at": {
           "description": "ISO 8601 format",
@@ -2811,8 +2887,66 @@
         }
       }
     },
-    "signalsWithSubtreeObject": {
-      "type": "object"
+    "signalWithSubtreeObject": {
+      "type": "object",
+      "required": [
+        "id",
+        "class",
+        "value_type",
+        "children",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "acl": {
+          "type": "object"
+        },
+        "children": {
+          "$ref": "#/definitions/signalWithSubtreeObject"
+        },
+        "class": {
+          "type": "string",
+          "enum": [
+            "analog",
+            "discrete"
+          ],
+          "example": "analog"
+        },
+        "created_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        },
+        "id": {
+          "type": "integer",
+          "example": 1
+        },
+        "unit": {
+          "description": "Measurement unit",
+          "type": "string",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": "C"
+        },
+        "updated_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        },
+        "value_type": {
+          "description": "Value data type",
+          "type": "string",
+          "enum": [
+            "undefined",
+            "integer",
+            "real",
+            "boolean"
+          ],
+          "example": "real"
+        }
+      }
     }
   },
   "tags": [
