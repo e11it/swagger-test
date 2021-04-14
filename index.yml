@@ -58,3 +58,9 @@ paths:
 
   /core/nodes/{node_id}/children:
     $ref: paths/core/nodes_children.yml
+
+  /core/signals:
+    $ref: paths/core/signals.yml
+
+  /core/signals/{signal_id}:
+    $ref: paths/core/signal.yml

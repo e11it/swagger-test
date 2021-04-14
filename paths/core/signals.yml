@@ -1,18 +1,18 @@
 get:
   tags:
     - "core"
-    - "nodes"
-  summary: "Get core nodes"
+    - "signals"
+  summary: "Get core signals"
   description: ""
-  operationId: "getCoreNodes"
-  produces:
-    - "application/json"
+  operationId: "getCoreSignals"
   parameters:
     - in: query
       name: datetime
       type: string
       format: "date-time"
       description: "Date time as ISO 8601"
+  produces:
+    - "application/json"
   responses:
     200:
       description: "OK"
@@ -22,7 +22,7 @@ get:
           items:
             type: array
             items:
-              $ref: "../../definitions/core.yml#/NodeObject"
+              $ref: "../../definitions/core.yml#/SignalObject"
     400:
       description: "Bad params supplied"
       schema:
@@ -32,17 +32,17 @@ get:
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
     404:
-      description: "Core nodes not found"
+      description: "Core signals not found"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
 
 put:
   tags:
   - "core"
-  - "nodes"
-  summary: "Create new core node"
+  - "signals"
+  summary: "Create new core signal"
   description: ""
-  operationId: "createCoreNode"
+  operationId: "createCoreSignal"
   consumes:
     - "application/json"
   produces:
@@ -58,12 +58,12 @@ put:
       description: "Rule params object."
       required: true
       schema:
-        $ref: "../../definitions/core.yml#/CreateNode"
+        $ref: "../../definitions/core.yml#/CreateSignal"
   responses:
     200:
       description: "OK"
       schema:
-        $ref: "../../definitions/core.yml#/NodeObject"
+        $ref: "../../definitions/core.yml#/SignalObject"
     400:
       description: "Bad params supplied"
       schema:
@@ -73,6 +73,6 @@ put:
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
     409:
-      description: "Conflict, gate already registered"
+      description: "Conflict, signal already registered"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"

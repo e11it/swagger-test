@@ -23,6 +23,15 @@
         ],
         "summary": "Get core nodes",
         "operationId": "getCoreNodes",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date time as ISO 8601",
+            "name": "datetime",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1058,6 +1067,475 @@
           }
         }
       }
+    },
+    "/core/signals": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "signals"
+        ],
+        "summary": "Get core signals",
+        "operationId": "getCoreSignals",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date time as ISO 8601",
+            "name": "datetime",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Core signals not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "signals"
+        ],
+        "summary": "Create new core signal",
+        "operationId": "createCoreSignal",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date time as ISO 8601",
+            "name": "datetime",
+            "in": "query"
+          },
+          {
+            "description": "Rule params object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict, signal already registered",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/core/signals/{signal_id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "signals"
+        ],
+        "summary": "Get signal",
+        "operationId": "getSignal",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Signal ID",
+            "name": "signal_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Signal not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "signals"
+        ],
+        "summary": "Delete signal",
+        "operationId": "deleteSignal",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Signal ID",
+            "name": "signal_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Signal not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "signals"
+        ],
+        "summary": "Update signal",
+        "operationId": "updateSignal",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Signal ID",
+            "name": "node_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "object",
+            "description": "Rule params object.",
+            "name": "body",
+            "in": "body",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Signal not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "example": 300
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something bad happens."
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z",
+          "description": "Datetime as ISO 8601",
+          "name": "datetime",
+          "in": "query"
+        }
+      ]
     },
     "/ibas/gates": {
       "get": {
