@@ -53,6 +53,9 @@ paths:
   /core/nodes:
     $ref: paths/core/nodes.yml
 
+  /core/root_node:
+    $ref: paths/core/root.yml
+
   /core/nodes/{node_id}:
     $ref: paths/core/node.yml
 

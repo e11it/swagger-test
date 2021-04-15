@@ -50,10 +50,6 @@ NodeObject:
     prev_id:
       type: integer
       example: 0
-    children:
-      type: array
-      items:
-      $ref: "#/NodeWithSubtreeObject"
     signal_id:
       type: integer
       example: 1
@@ -122,58 +118,6 @@ NodeWithSubtreeObject:
       format: "date-time"
       example: "2018-03-20T09:12:28.123Z"
       description: "ISO 8601 format"
-
-SignalWithSubtreeObject:
-  type: object
-  required:
-    - "id"
-    - "class"
-    - "value_type"
-    - "children"
-    - "created_at"
-    - "updated_at"
-  properties:
-    id:
-      type: integer
-      example: 1
-    unit:
-      type: string
-      x-nullable: true
-      x-omitempty: true
-      example: "C"
-      description: "Measurement unit"
-    value_type:
-      type: string
-      example: "real"
-      description: "Value data type"
-      enum:
-        - "undefined"
-        - "integer"
-        - "real"
-        - "boolean"
-    class:
-      type: string
-      example: "analog"
-      description: ""
-      enum:
-        - "analog"
-        - "discrete"
-    children:
-      type: array
-      items:
-      $ref: "#/SignalWithSubtreeObject"
-    created_at:
-      type: string
-      format: "date-time"
-      example: "2018-03-20T09:12:28.123Z"
-      description: "ISO 8601 format"
-    updated_at:
-      type: string
-      format: "date-time"
-      example: "2018-03-20T09:12:28.123Z"
-      description: "ISO 8601 format"
-    acl:
-      type: object
 
 UpdateNode:
   type: object
@@ -245,6 +189,56 @@ DirectoryObject:
 # todo
 SignalObject:
   type: object
+  required:
+    - "id"
+    - "class"
+    - "value_type"
+    - "children"
+    - "created_at"
+    - "updated_at"
+  properties:
+    id:
+      type: integer
+      example: 1
+    unit:
+      type: string
+      x-nullable: true
+      x-omitempty: true
+      example: "C"
+      description: "Measurement unit"
+    value_type:
+      type: string
+      example: "real"
+      description: "Value data type"
+      enum:
+        - "undefined"
+        - "integer"
+        - "real"
+        - "boolean"
+    class:
+      type: string
+      example: "analog"
+      description: ""
+      enum:
+        - "analog"
+        - "discrete"
+    children:
+      type: array
+      items:
+      $ref: "#/SignalWithSubtreeObject"
+    created_at:
+      type: string
+      format: "date-time"
+      example: "2018-03-20T09:12:28.123Z"
+      description: "ISO 8601 format"
+    updated_at:
+      type: string
+      format: "date-time"
+      example: "2018-03-20T09:12:28.123Z"
+      description: "ISO 8601 format"
+    acl:
+      type: object
+
 
 # todo
 CreateSignal:
@@ -253,3 +247,55 @@ CreateSignal:
 # todo
 UpdateSignal:
   type: object
+
+SignalWithSubtreeObject:
+  type: object
+  required:
+    - "id"
+    - "class"
+    - "value_type"
+    - "children"
+    - "created_at"
+    - "updated_at"
+  properties:
+    id:
+      type: integer
+      example: 1
+    unit:
+      type: string
+      x-nullable: true
+      x-omitempty: true
+      example: "C"
+      description: "Measurement unit"
+    value_type:
+      type: string
+      example: "real"
+      description: "Value data type"
+      enum:
+        - "undefined"
+        - "integer"
+        - "real"
+        - "boolean"
+    class:
+      type: string
+      example: "analog"
+      description: ""
+      enum:
+        - "analog"
+        - "discrete"
+    children:
+      type: array
+      items:
+      $ref: "#/SignalWithSubtreeObject"
+    created_at:
+      type: string
+      format: "date-time"
+      example: "2018-03-20T09:12:28.123Z"
+      description: "ISO 8601 format"
+    updated_at:
+      type: string
+      format: "date-time"
+      example: "2018-03-20T09:12:28.123Z"
+      description: "ISO 8601 format"
+    acl:
+      type: object

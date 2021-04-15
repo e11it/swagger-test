@@ -1,0 +1,26 @@
+get:
+  tags:
+    - "core"
+    - "nodes"
+  summary: "Get root node"
+  description: ""
+  operationId: "getRootNode"
+  produces:
+    - "application/json"
+  responses:
+    200:
+      description: "OK"
+      schema:
+        $ref: "../../definitions/core.yml#/NodeObject"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
