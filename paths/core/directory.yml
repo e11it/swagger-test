@@ -1,0 +1,125 @@
+parameters:
+  - name: datetime
+    in: query
+    description: "Datetime as ISO 8601"
+    type: string
+    format: "date-time"
+    example: "2018-03-20T09:12:28.123Z"
+    required: false
+
+get:
+  tags:
+    - "core"
+    - "directories"
+  summary: "Get directory"
+  description: ""
+  operationId: "getDirectory"
+  produces:
+    - "application/json"
+  parameters:
+    - name: directory_id
+      in: path
+      description: "Directory ID"
+      type: integer
+      required: true
+  responses:
+    200:
+      description: "OK"
+      schema:
+        $ref: "../../definitions/core.yml#/DirectoryObject"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Directory not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+
+patch:
+  tags:
+    - "core"
+    - "directories"
+  summary: "Update directory"
+  description: ""
+  operationId: "updateDirectory"
+  consumes:
+    - "application/json"
+  produces:
+    - "application/json"
+  parameters:
+    - name: directory_id
+      in: path
+      description: "Directory ID"
+      type: integer
+      required: true
+    - in: "body"
+      name: "body"
+      description: "Rule params object."
+      required: true
+      schema:
+      $ref: "../../definitions/core.yml#/UpdateDirectory"
+  responses:
+    200:
+      description: "OK"
+      schema:
+        $ref: "../../definitions/core.yml#/DirectoryObject"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Directory not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+
+delete:
+  tags:
+    - "core"
+    - "directories"
+  summary: "Delete directory"
+  description: ""
+  operationId: "deleteDirectory"
+  produces:
+    - "application/json"
+  parameters:
+    - name: directory_id
+      in: path
+      description: "Directory ID"
+      type: integer
+      required: true
+  responses:
+    200:
+      description: "OK"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Directory not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"

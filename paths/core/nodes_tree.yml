@@ -1,0 +1,42 @@
+get:
+  tags:
+    - "core"
+    - "nodes"
+  summary: "Get nodes tree with signals"
+  description: ""
+  operationId: "getNodesTreeWithSignals"
+  produces:
+    - "application/json"
+  parameters:
+    - in: query
+      name: node_name
+      type: string
+      required: false
+      description: "Filter by node name"
+    - in: query
+      name: signal_name
+      type: string
+      required: false
+      description: "Filter by signal name"
+
+  responses:
+    200:
+      description: "OK"
+      schema:
+        $ref: "../../definitions/core.yml#/NodeWithSubtreeObject"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Nothing found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"

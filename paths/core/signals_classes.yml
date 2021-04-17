@@ -1,0 +1,28 @@
+get:
+  tags:
+    - "signals"
+    - "core"
+  summary: "Get signals classes"
+  description: ""
+  operationId: "getSignalsClasses"
+  produces:
+    - "application/json"
+  responses:
+    200:
+      description: "OK"
+      schema:
+        type: array
+        items:
+          type: string
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"

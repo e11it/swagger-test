@@ -62,8 +62,23 @@ paths:
   /core/nodes/{node_id}/children:
     $ref: paths/core/nodes_children.yml
 
+  /core/nodes/tree:
+    $ref: paths/core/nodes_tree.yml
+
+  /core/signals/classes:
+    $ref: paths/core/signals_classes.yml
+
+  /core/signals/value_types:
+    $ref: paths/core/signals_value_types.yml
+
   /core/signals:
     $ref: paths/core/signals.yml
 
   /core/signals/{signal_id}:
     $ref: paths/core/signal.yml
+
+  /core/directories:
+    $ref: paths/core/directories.yml
+
+  /core/directories/{directory_id}:
+    $ref: paths/core/directory.yml
