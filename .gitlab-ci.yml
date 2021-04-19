@@ -5,7 +5,7 @@ before_script:
   - redoc-cli --version
 
 validate:
-  stage: deploy
+  stage: test
   script:
     - make validate
 
