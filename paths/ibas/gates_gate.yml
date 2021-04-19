@@ -45,8 +45,8 @@ patch:
   produces:
     - "application/json"
   parameters:
-    - in: "body"
-      name: "body"
+    - in: body
+      name: body
       description: "IBA Gate Meta object."
       required: true
       schema:

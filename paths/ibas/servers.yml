@@ -45,8 +45,8 @@ put:
   produces:
     - "application/json"
   parameters:
-    - in: "body"
-      name: "body"
+    - in: body
+      name: body
       description: "IBA Server object"
       required: true
       schema:

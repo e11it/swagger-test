@@ -52,10 +52,10 @@ put:
       name: datetime
       type: string
       format: "date-time"
-      description: "Date time as ISO 8601"
-    - in: "body"
-      name: "body"
-      description: "Rule params object."
+      description: "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123"
+    - in: body
+      name: body
+      description: "Create node params object."
       required: true
       schema:
         $ref: "../../definitions/core.yml#/CreateNode"

@@ -27,7 +27,7 @@
           {
             "type": "string",
             "format": "date-time",
-            "description": "Date time as ISO 8601",
+            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
             "name": "datetime",
             "in": "query"
           }
@@ -147,7 +147,7 @@
           {
             "type": "string",
             "format": "date-time",
-            "description": "Date time as ISO 8601",
+            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
             "name": "datetime",
             "in": "query"
           },
@@ -507,11 +507,31 @@
             "required": true
           },
           {
-            "type": "object",
-            "description": "Rule params object.",
+            "description": "Update directory params object.",
             "name": "body",
             "in": "body",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "acl": {
+                  "type": "object",
+                  "x-nullable": true
+                },
+                "description": {
+                  "type": "string",
+                  "pattern": "^.{2,200}$",
+                  "x-nullable": true,
+                  "example": "Description"
+                },
+                "name": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
+                  "x-nullable": true,
+                  "example": "directory1"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -624,8 +644,7 @@
         {
           "type": "string",
           "format": "date-time",
-          "example": "2018-03-20T09:12:28.123Z",
-          "description": "Datetime as ISO 8601",
+          "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
           "name": "datetime",
           "in": "query"
         }
@@ -780,12 +799,12 @@
           {
             "type": "string",
             "format": "date-time",
-            "description": "Date time as ISO 8601",
+            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
             "name": "datetime",
             "in": "query"
           },
           {
-            "description": "Rule params object.",
+            "description": "Create node params object.",
             "name": "body",
             "in": "body",
             "required": true,
@@ -1433,11 +1452,57 @@
             "required": true
           },
           {
-            "type": "object",
-            "description": "Rule params object.",
+            "description": "Update node params object.",
             "name": "body",
             "in": "body",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "acl": {
+                  "type": "object"
+                },
+                "comment": {
+                  "type": "string",
+                  "pattern": "^.{2,200}$",
+                  "x-nullable": true,
+                  "example": "Comment"
+                },
+                "description": {
+                  "type": "string",
+                  "pattern": "^.{2,200}$",
+                  "x-nullable": true,
+                  "example": "Description"
+                },
+                "directory_id": {
+                  "type": "integer",
+                  "x-nullable": true,
+                  "example": 1
+                },
+                "meta": {
+                  "type": "string",
+                  "pattern": "^.{2,200}$",
+                  "x-nullable": true,
+                  "example": "meta"
+                },
+                "name": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
+                  "x-nullable": true,
+                  "example": "node1"
+                },
+                "prev_id": {
+                  "type": "integer",
+                  "x-nullable": true,
+                  "example": 1
+                },
+                "signal_id": {
+                  "type": "integer",
+                  "x-nullable": true,
+                  "example": 1
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -1564,8 +1629,7 @@
         {
           "type": "string",
           "format": "date-time",
-          "example": "2018-03-20T09:12:28.123Z",
-          "description": "Datetime as ISO 8601",
+          "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
           "name": "datetime",
           "in": "query"
         }
@@ -1890,7 +1954,7 @@
           {
             "type": "string",
             "format": "date-time",
-            "description": "Date time as ISO 8601",
+            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
             "name": "datetime",
             "in": "query"
           }
@@ -2049,12 +2113,12 @@
           {
             "type": "string",
             "format": "date-time",
-            "description": "Date time as ISO 8601",
+            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
             "name": "datetime",
             "in": "query"
           },
           {
-            "description": "Rule params object.",
+            "description": "Create signal params object.",
             "name": "body",
             "in": "body",
             "required": true,
@@ -2667,11 +2731,70 @@
             "required": true
           },
           {
-            "type": "object",
-            "description": "Rule params object.",
+            "description": "Update signal params object.",
             "name": "body",
             "in": "body",
-            "required": true
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "acl": {
+                  "type": "object",
+                  "x-nullable": true
+                },
+                "class": {
+                  "type": "string",
+                  "enum": [
+                    "analog",
+                    "discrete",
+                    "virtual"
+                  ],
+                  "x-nullable": true,
+                  "example": "analog"
+                },
+                "description": {
+                  "type": "string",
+                  "pattern": "^.{2,200}$",
+                  "x-nullable": true,
+                  "example": "Description"
+                },
+                "external_id": {
+                  "type": "integer",
+                  "x-nullable": true,
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
+                  "x-nullable": true,
+                  "example": "node1"
+                },
+                "prev_id": {
+                  "type": "integer",
+                  "x-nullable": true,
+                  "example": 1
+                },
+                "unit": {
+                  "description": "Measurement unit",
+                  "type": "string",
+                  "x-nullable": true,
+                  "x-omitempty": true,
+                  "example": "C"
+                },
+                "value_type": {
+                  "description": "Value data type",
+                  "type": "string",
+                  "enum": [
+                    "undefined",
+                    "integer",
+                    "real",
+                    "boolean"
+                  ],
+                  "x-nullable": true,
+                  "example": "real"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -2823,8 +2946,7 @@
         {
           "type": "string",
           "format": "date-time",
-          "example": "2018-03-20T09:12:28.123Z",
-          "description": "Datetime as ISO 8601",
+          "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
           "name": "datetime",
           "in": "query"
         }
@@ -3689,7 +3811,7 @@
                       },
                       "number_in_module": {
                         "type": "integer",
-                        "exmaple": 102
+                        "example": 102
                       },
                       "storage_id": {
                         "type": "integer",
@@ -4181,7 +4303,7 @@
                 },
                 "number_in_module": {
                   "type": "integer",
-                  "exmaple": 102
+                  "example": 102
                 },
                 "storage_id": {
                   "type": "integer",
@@ -4303,7 +4425,7 @@
                       },
                       "number_in_module": {
                         "type": "integer",
-                        "exmaple": 102
+                        "example": 102
                       },
                       "storage_id": {
                         "type": "integer",
@@ -4428,7 +4550,7 @@
                       },
                       "number_in_module": {
                         "type": "integer",
-                        "exmaple": 102
+                        "example": 102
                       },
                       "storage_id": {
                         "type": "integer",

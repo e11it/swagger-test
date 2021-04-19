@@ -47,8 +47,8 @@ put:
   produces:
     - "application/json"
   parameters:
-    - in: "body"
-      name: "body"
+    - in: body
+      name: body
       description: "IBA Gate mnt object."
       required: true
       schema:

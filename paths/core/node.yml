@@ -1,10 +1,9 @@
 parameters:
   - name: datetime
     in: query
-    description: "Datetime as ISO 8601"
+    description: "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123"
     type: string
     format: "date-time"
-    example: "2018-03-20T09:12:28.123Z"
     required: false
 
 get:
@@ -61,12 +60,12 @@ patch:
       description: "Node ID"
       type: integer
       required: true
-    - in: "body"
-      name: "body"
-      description: "Rule params object."
+    - in: body
+      name: body
+      description: "Update node params object."
       required: true
       schema:
-      $ref: "../../definitions/core.yml#/UpdateNode"
+        $ref: "../../definitions/core.yml#/UpdateNode"
   responses:
     200:
       description: "OK"

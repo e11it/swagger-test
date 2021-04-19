@@ -14,7 +14,7 @@ IBAMappingObject:
       example: 1
     number_in_module:
       type: "integer"
-      exmaple: 102
+      example: 102
     is_digital: 
       type: boolean
       example: true
