@@ -2,7 +2,7 @@ CreateNode:
   type: object
   required:
     - "name"
-    - "prev_id"
+    - "parent_id"
   properties:
     signal_id:
       type: integer
@@ -26,7 +26,7 @@ CreateNode:
       type: string
       pattern: "^.{2,200}$"
       example: "meta"
-    prev_id:
+    parent_id:
       type: integer
       example: 1
     acl:
@@ -37,7 +37,7 @@ NodeObject:
   required:
     - "id"
     - "name"
-    - "prev_id"
+    - "parent_id"
     - "created_at"
     - "updated_at"
   properties:
@@ -47,7 +47,7 @@ NodeObject:
     name:
       type: string
       example: "some_node"
-    prev_id:
+    parent_id:
       type: integer
       example: 0
     signal_id:
@@ -77,7 +77,7 @@ NodeWithSubtreeObject:
   required:
     - "id"
     - "name"
-    - "prev_id"
+    - "parent_id"
     - "full_name"
     - "directory"
     - "children"
@@ -90,7 +90,7 @@ NodeWithSubtreeObject:
     name:
       type: string
       example: "some_rule"
-    prev_id:
+    parent_id:
       type: integer
       example: 0
     full_name:
@@ -148,7 +148,7 @@ UpdateNode:
       pattern: "^.{2,200}$"
       example: "meta"
       x-nullable: true
-    prev_id:
+    parent_id:
       type: integer
       example: 1
       x-nullable: true
@@ -251,6 +251,7 @@ SignalObject:
         - "undefined"
         - "integer"
         - "real"
+        - "double"
         - "boolean"
     class:
       type: string
@@ -294,7 +295,7 @@ CreateSignal:
       type: string
       pattern: "^.{2,200}$"
       example: "Description"
-    prev_id:
+    parent_id:
       type: integer
       x-nullable: true
       x-omitempty: true
@@ -313,6 +314,7 @@ CreateSignal:
         - "undefined"
         - "integer"
         - "real"
+        - "double"
         - "boolean"
     class:
       type: string
@@ -339,7 +341,7 @@ UpdateSignal:
       pattern: "^.{2,200}$"
       example: "Description"
       x-nullable: true
-    prev_id:
+    parent_id:
       type: integer
       example: 1
       x-nullable: true
@@ -360,6 +362,7 @@ UpdateSignal:
         - "undefined"
         - "integer"
         - "real"
+        - "double"
         - "boolean"
       x-nullable: true
     class:
@@ -403,6 +406,7 @@ SignalWithSubtreeObject:
         - "undefined"
         - "integer"
         - "real"
+        - "double"
         - "boolean"
     class:
       type: string
