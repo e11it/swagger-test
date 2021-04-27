@@ -262,8 +262,8 @@ SignalObject:
         - "discrete"
         - "virtual"
     external_id:
-      type: integer
-      example: 1
+      type: string
+      example: "1"
     has_children:
       type: boolean
       x-nullable: true
@@ -325,8 +325,8 @@ CreateSignal:
         - "discrete"
         - "virtual"
     external_id:
-      type: integer
-      example: 1
+      type: string
+      example: "1"
 
 UpdateSignal:
   type: object
@@ -375,8 +375,8 @@ UpdateSignal:
         - "virtual"
       x-nullable: true
     external_id:
-      type: integer
-      example: 1
+      type: string
+      example: "1"
       x-nullable: true
 
 SignalWithSubtreeObject:
@@ -417,8 +417,8 @@ SignalWithSubtreeObject:
         - "discrete"
         - "virtual"
     external_id:
-      type: integer
-      example: 1
+      type: string
+      example: "1"
       x-nullable: true
     children:
       type: array
