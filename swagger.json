@@ -1,7 +1,6 @@
 {
   "schemes": [
-    "http",
-    "https"
+    "http"
   ],
   "swagger": "2.0",
   "info": {
@@ -683,7 +682,7 @@
                     "required": [
                       "id",
                       "name",
-                      "prev_id",
+                      "parent_id",
                       "created_at",
                       "updated_at"
                     ],
@@ -712,7 +711,7 @@
                         "type": "string",
                         "example": "some_node"
                       },
-                      "prev_id": {
+                      "parent_id": {
                         "type": "integer",
                         "example": 0
                       },
@@ -812,7 +811,7 @@
               "type": "object",
               "required": [
                 "name",
-                "prev_id"
+                "parent_id"
               ],
               "properties": {
                 "acl": {
@@ -842,7 +841,7 @@
                   "pattern": "^[A-Za-z0-9_.]{2,50}$",
                   "example": "node1"
                 },
-                "prev_id": {
+                "parent_id": {
                   "type": "integer",
                   "example": 1
                 },
@@ -862,7 +861,7 @@
               "required": [
                 "id",
                 "name",
-                "prev_id",
+                "parent_id",
                 "created_at",
                 "updated_at"
               ],
@@ -891,7 +890,7 @@
                   "type": "string",
                   "example": "some_node"
                 },
-                "prev_id": {
+                "parent_id": {
                   "type": "integer",
                   "example": 0
                 },
@@ -992,7 +991,7 @@
               "required": [
                 "id",
                 "name",
-                "prev_id",
+                "parent_id",
                 "full_name",
                 "directory",
                 "children",
@@ -1057,7 +1056,7 @@
                   "type": "string",
                   "example": "some_rule"
                 },
-                "prev_id": {
+                "parent_id": {
                   "type": "integer",
                   "example": 0
                 },
@@ -1091,9 +1090,9 @@
                       "example": "2018-03-20T09:12:28.123Z"
                     },
                     "external_id": {
-                      "type": "integer",
+                      "type": "string",
                       "x-nullable": true,
-                      "example": 1
+                      "example": "1"
                     },
                     "id": {
                       "type": "integer",
@@ -1119,6 +1118,7 @@
                         "undefined",
                         "integer",
                         "real",
+                        "double",
                         "boolean"
                       ],
                       "example": "real"
@@ -1229,7 +1229,7 @@
               "required": [
                 "id",
                 "name",
-                "prev_id",
+                "parent_id",
                 "created_at",
                 "updated_at"
               ],
@@ -1258,7 +1258,7 @@
                   "type": "string",
                   "example": "some_node"
                 },
-                "prev_id": {
+                "parent_id": {
                   "type": "integer",
                   "example": 0
                 },
@@ -1491,7 +1491,7 @@
                   "x-nullable": true,
                   "example": "node1"
                 },
-                "prev_id": {
+                "parent_id": {
                   "type": "integer",
                   "x-nullable": true,
                   "example": 1
@@ -1513,7 +1513,7 @@
               "required": [
                 "id",
                 "name",
-                "prev_id",
+                "parent_id",
                 "created_at",
                 "updated_at"
               ],
@@ -1542,7 +1542,7 @@
                   "type": "string",
                   "example": "some_node"
                 },
-                "prev_id": {
+                "parent_id": {
                   "type": "integer",
                   "example": 0
                 },
@@ -1703,7 +1703,7 @@
                     "required": [
                       "id",
                       "name",
-                      "prev_id",
+                      "parent_id",
                       "created_at",
                       "updated_at"
                     ],
@@ -1732,7 +1732,7 @@
                         "type": "string",
                         "example": "some_node"
                       },
-                      "prev_id": {
+                      "parent_id": {
                         "type": "integer",
                         "example": 0
                       },
@@ -1842,7 +1842,7 @@
               "required": [
                 "id",
                 "name",
-                "prev_id",
+                "parent_id",
                 "created_at",
                 "updated_at"
               ],
@@ -1871,7 +1871,7 @@
                   "type": "string",
                   "example": "some_node"
                 },
-                "prev_id": {
+                "parent_id": {
                   "type": "integer",
                   "example": 0
                 },
@@ -1999,8 +1999,8 @@
                         "example": "Description"
                       },
                       "external_id": {
-                        "type": "integer",
-                        "example": 1
+                        "type": "string",
+                        "example": "1"
                       },
                       "has_children": {
                         "type": "boolean",
@@ -2036,6 +2036,7 @@
                           "undefined",
                           "integer",
                           "real",
+                          "double",
                           "boolean"
                         ],
                         "example": "real"
@@ -2145,15 +2146,15 @@
                   "example": "Description"
                 },
                 "external_id": {
-                  "type": "integer",
-                  "example": 1
+                  "type": "string",
+                  "example": "1"
                 },
                 "name": {
                   "type": "string",
                   "pattern": "^[A-Za-z0-9_.]{2,50}$",
                   "example": "some_signal"
                 },
-                "prev_id": {
+                "parent_id": {
                   "type": "integer",
                   "x-nullable": true,
                   "x-omitempty": true,
@@ -2173,6 +2174,7 @@
                     "undefined",
                     "integer",
                     "real",
+                    "double",
                     "boolean"
                   ],
                   "example": "real"
@@ -2216,8 +2218,8 @@
                   "example": "Description"
                 },
                 "external_id": {
-                  "type": "integer",
-                  "example": 1
+                  "type": "string",
+                  "example": "1"
                 },
                 "has_children": {
                   "type": "boolean",
@@ -2253,6 +2255,7 @@
                     "undefined",
                     "integer",
                     "real",
+                    "double",
                     "boolean"
                   ],
                   "example": "real"
@@ -2510,8 +2513,8 @@
                   "example": "Description"
                 },
                 "external_id": {
-                  "type": "integer",
-                  "example": 1
+                  "type": "string",
+                  "example": "1"
                 },
                 "has_children": {
                   "type": "boolean",
@@ -2547,6 +2550,7 @@
                     "undefined",
                     "integer",
                     "real",
+                    "double",
                     "boolean"
                   ],
                   "example": "real"
@@ -2759,9 +2763,9 @@
                   "example": "Description"
                 },
                 "external_id": {
-                  "type": "integer",
+                  "type": "string",
                   "x-nullable": true,
-                  "example": 1
+                  "example": "1"
                 },
                 "name": {
                   "type": "string",
@@ -2769,7 +2773,7 @@
                   "x-nullable": true,
                   "example": "node1"
                 },
-                "prev_id": {
+                "parent_id": {
                   "type": "integer",
                   "x-nullable": true,
                   "example": 1
@@ -2788,6 +2792,7 @@
                     "undefined",
                     "integer",
                     "real",
+                    "double",
                     "boolean"
                   ],
                   "x-nullable": true,
@@ -2832,8 +2837,8 @@
                   "example": "Description"
                 },
                 "external_id": {
-                  "type": "integer",
-                  "example": 1
+                  "type": "string",
+                  "example": "1"
                 },
                 "has_children": {
                   "type": "boolean",
@@ -2869,6 +2874,7 @@
                     "undefined",
                     "integer",
                     "real",
+                    "double",
                     "boolean"
                   ],
                   "example": "real"
@@ -4733,7 +4739,7 @@
       "required": [
         "id",
         "name",
-        "prev_id",
+        "parent_id",
         "full_name",
         "directory",
         "children",
@@ -4765,7 +4771,7 @@
           "type": "string",
           "example": "some_rule"
         },
-        "prev_id": {
+        "parent_id": {
           "type": "integer",
           "example": 0
         },
@@ -4810,9 +4816,9 @@
           "example": "2018-03-20T09:12:28.123Z"
         },
         "external_id": {
-          "type": "integer",
+          "type": "string",
           "x-nullable": true,
-          "example": 1
+          "example": "1"
         },
         "id": {
           "type": "integer",
@@ -4838,6 +4844,7 @@
             "undefined",
             "integer",
             "real",
+            "double",
             "boolean"
           ],
           "example": "real"
