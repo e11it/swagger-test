@@ -3,7 +3,6 @@ host: "localhost"
 basePath: "/v1"
 schemes:
   - "http"
-  - "https"
 info:
   description: "Сервис мета информации"
   version: "1.0.0"
