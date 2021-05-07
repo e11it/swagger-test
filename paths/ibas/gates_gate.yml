@@ -8,7 +8,7 @@ parameters:
 get:
   tags:
   - "iba"
-  summary: "Get Gate by name"
+  summary: "Get Gate"
   description: ""
   operationId: "getIBAGateByName"
   produces:
@@ -34,12 +34,12 @@ get:
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
 
-patch:
+put:
   tags:
   - "iba"
-  summary: "Modify Gate Metadata"
+  summary: "Create or update Gate"
   description: ""
-  operationId: "updateIBAGateMetadata"
+  operationId: "createIBAGate"
   consumes:
     - "application/json"
   produces:
@@ -47,7 +47,7 @@ patch:
   parameters:
     - in: body
       name: body
-      description: "IBA Gate Meta object."
+      description: "IBA Gate Meta object"
       required: true
       schema:
         type: object

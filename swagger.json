@@ -3047,109 +3047,6 @@
             }
           }
         }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Register new Gate",
-        "operationId": "registerIBAGate",
-        "parameters": [
-          {
-            "description": "IBA Gate object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "name": {
-                  "description": "Имя IBA Gate",
-                  "type": "string",
-                  "example": "p3apr3-pda-vc.p3.ia.nlmk"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict, gate already registered",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/ibas/gates/${gate_name}": {
@@ -3160,7 +3057,7 @@
         "tags": [
           "iba"
         ],
-        "summary": "Get Gate by name",
+        "summary": "Get Gate",
         "operationId": "getIBAGateByName",
         "responses": {
           "200": {
@@ -3239,7 +3136,7 @@
           }
         }
       },
-      "patch": {
+      "put": {
         "consumes": [
           "application/json"
         ],
@@ -3249,11 +3146,11 @@
         "tags": [
           "iba"
         ],
-        "summary": "Modify Gate Metadata",
-        "operationId": "updateIBAGateMetadata",
+        "summary": "Create or update Gate",
+        "operationId": "createIBAGate",
         "parameters": [
           {
-            "description": "IBA Gate Meta object.",
+            "description": "IBA Gate Meta object",
             "name": "body",
             "in": "body",
             "required": true,
