@@ -22,7 +22,7 @@ get:
           items:
             type: array
             items:
-              $ref: "../../definitions/core.yml#/DirectoryObject"
+              $ref: "./definitions/core.yml#/DirectoryObject"
     400:
       description: "Bad params supplied"
       schema:

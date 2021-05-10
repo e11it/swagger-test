@@ -15,7 +15,7 @@ get:
           items:
             type: array
             items:
-              $ref: "../../definitions/iba.yml#/IBAGate"
+              $ref: "./definitions/iba.yml#/IBAGate"
     400:
       description: "Bad params supplied"
       schema:

@@ -30,10 +30,10 @@ paths:
 
   /ibas/gates:
     $ref: paths/ibas/gates.yml
-  
+
   /ibas/gates/${gate_name}:
     $ref: paths/ibas/gates_gate.yml
-  
+
   /ibas/gates/${gate_name}/mnts:
     $ref: paths/ibas/gates_gate_mnts.yml
 
