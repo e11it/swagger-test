@@ -20,8 +20,8 @@
           "core",
           "directories"
         ],
-        "summary": "Get core directories",
-        "operationId": "getCoreDirectories",
+        "summary": "Get directories",
+        "operationId": "getDirectories",
         "parameters": [
           {
             "type": "string",
@@ -77,8 +77,8 @@
           "core",
           "directories"
         ],
-        "summary": "Create new core directory",
-        "operationId": "createCoreDirectory",
+        "summary": "Create new directory",
+        "operationId": "createDirectory",
         "parameters": [
           {
             "type": "string",
@@ -310,8 +310,8 @@
           "core",
           "nodes"
         ],
-        "summary": "Get core nodes",
-        "operationId": "getCoreNodes",
+        "summary": "Get nodes",
+        "operationId": "getNodes",
         "parameters": [
           {
             "type": "string",
@@ -367,8 +367,8 @@
           "core",
           "nodes"
         ],
-        "summary": "Create new core node",
-        "operationId": "createCoreNode",
+        "summary": "Create new node",
+        "operationId": "createNode",
         "parameters": [
           {
             "type": "string",
@@ -799,8 +799,8 @@
           "core",
           "signals"
         ],
-        "summary": "Get core signals",
-        "operationId": "getCoreSignals",
+        "summary": "Get signals",
+        "operationId": "getSignals",
         "parameters": [
           {
             "type": "string",
@@ -856,8 +856,8 @@
           "core",
           "signals"
         ],
-        "summary": "Create new core signal",
-        "operationId": "createCoreSignal",
+        "summary": "Create new signal",
+        "operationId": "createSignal",
         "parameters": [
           {
             "type": "string",
@@ -1208,67 +1208,6 @@
             }
           }
         }
-<<<<<<< HEAD
-=======
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Register new Gate",
-        "operationId": "registerIBAGate",
-        "parameters": [
-          {
-            "description": "IBA Gate object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/iBAGate"
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          },
-          "409": {
-            "description": "Conflict, gate already registered",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          }
-        }
->>>>>>> 6b87de4c9fa14a701af4c055a053256ceb682821
       }
     },
     "/ibas/gates/${gate_name}": {
@@ -1423,50 +1362,6 @@
           }
         }
       },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Register new mnt for IBA Gate",
-        "operationId": "registerIBAGateMnt",
-        "parameters": [
-          {
-            "description": "IBA Gate mnt object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/iBAGateMnt"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/iBAGateMnt"
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          }
-        }
-      },
       "parameters": [
         {
           "type": "string",
@@ -1485,7 +1380,7 @@
         "tags": [
           "iba"
         ],
-        "summary": "Get mnt for IBA Gate",
+        "summary": "Get mnt for IBAGate",
         "operationId": "getIBAGateMnt",
         "responses": {
           "200": {
@@ -1519,7 +1414,7 @@
           }
         }
       },
-      "patch": {
+      "put": {
         "consumes": [
           "application/json"
         ],
@@ -1529,7 +1424,7 @@
         "tags": [
           "iba"
         ],
-        "summary": "Modify mnt Metadata",
+        "summary": "Create or Update Mnt Gate",
         "operationId": "updateIBAGateMnt",
         "parameters": [
           {
@@ -1580,14 +1475,14 @@
       "parameters": [
         {
           "type": "string",
-          "description": "IBA Gate name",
+          "description": "IBAGate name",
           "name": "gate_name",
           "in": "path",
           "required": true
         },
         {
           "type": "string",
-          "description": "IBA Gate mnt",
+          "description": "IBAGate mnt",
           "name": "mnt",
           "in": "path",
           "required": true
