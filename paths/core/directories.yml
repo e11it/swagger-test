@@ -2,9 +2,9 @@ get:
   tags:
     - "core"
     - "directories"
-  summary: "Get core directories"
+  summary: "Get directories"
   description: ""
-  operationId: "getCoreDirectories"
+  operationId: "getDirectories"
   produces:
     - "application/json"
   parameters:
@@ -40,9 +40,9 @@ put:
   tags:
   - "core"
   - "directories"
-  summary: "Create new core directory"
+  summary: "Create new directory"
   description: ""
-  operationId: "createCoreDirectory"
+  operationId: "createDirectory"
   consumes:
     - "application/json"
   produces:

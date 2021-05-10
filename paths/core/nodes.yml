@@ -2,9 +2,9 @@ get:
   tags:
     - "core"
     - "nodes"
-  summary: "Get core nodes"
+  summary: "Get nodes"
   description: ""
-  operationId: "getCoreNodes"
+  operationId: "getNodes"
   produces:
     - "application/json"
   parameters:
@@ -40,9 +40,9 @@ put:
   tags:
   - "core"
   - "nodes"
-  summary: "Create new core node"
+  summary: "Create new node"
   description: ""
-  operationId: "createCoreNode"
+  operationId: "createNode"
   consumes:
     - "application/json"
   produces:

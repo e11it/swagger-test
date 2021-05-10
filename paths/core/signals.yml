@@ -2,9 +2,9 @@ get:
   tags:
     - "core"
     - "signals"
-  summary: "Get core signals"
+  summary: "Get signals"
   description: ""
-  operationId: "getCoreSignals"
+  operationId: "getSignals"
   parameters:
     - in: query
       name: datetime
@@ -40,9 +40,9 @@ put:
   tags:
   - "core"
   - "signals"
-  summary: "Create new core signal"
+  summary: "Create new signal"
   description: ""
-  operationId: "createCoreSignal"
+  operationId: "createSignal"
   consumes:
     - "application/json"
   produces:
