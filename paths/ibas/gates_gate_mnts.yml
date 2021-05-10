@@ -35,34 +35,3 @@ get:
       description: "IBA Server not found"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
-
-put:
-  tags:
-  - "iba"
-  summary: "Register new mnt for IBA Gate"
-  description: ""
-  operationId: "registerIBAGateMnt"
-  consumes:
-    - "application/json"
-  produces:
-    - "application/json"
-  parameters:
-    - in: body
-      name: body
-      description: "IBA Gate mnt object."
-      required: true
-      schema:
-        $ref: "../../definitions/iba.yml#/IBAGateMnt"
-  responses:
-    200:
-      description: "OK"
-      schema:
-        $ref: "../../definitions/iba.yml#/IBAGateMnt"
-    400:
-      description: "Bad params supplied"
-      schema:
-        $ref: "../../definitions/errors.yml#/ErrorResponse"
-    401:
-      description: "Unauthorized"
-      schema:
-        $ref: "../../definitions/errors.yml#/ErrorResponse"

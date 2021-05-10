@@ -1,19 +1,19 @@
 parameters:
   - name: gate_name
     in: path
-    description: "IBA Gate name"
+    description: "IBAGate name"
     type: string
     required: true
   - name: mnt
     in: path
-    description: "IBA Gate mnt"
+    description: "IBAGate mnt"
     type: string
     required: true
 
 get:
   tags:
   - "iba"
-  summary: "Get mnt for IBA Gate"
+  summary: "Get mnt for IBAGate"
   description: ""
   operationId: "getIBAGateMnt"
   produces:
@@ -39,10 +39,10 @@ get:
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
 
-patch:
+put:
   tags:
   - "iba"
-  summary: "Modify mnt Metadata"
+  summary: "Create or Update Mnt Gate"
   description: ""
   operationId: "updateIBAGateMnt"
   consumes:
