@@ -21,7 +21,7 @@ get:
           items:
             type: array
             items:
-              $ref: "../../definitions/iba.yml#/IBAMappingObject"
+              $ref: "./definitions/iba.yml#/IBAMappingObject"
     400:
       description: "Bad params supplied"
       schema:

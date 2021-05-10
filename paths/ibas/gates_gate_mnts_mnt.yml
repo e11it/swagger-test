@@ -25,7 +25,7 @@ get:
         type: object
         properties:
           items:
-            $ref: "../../definitions/iba.yml#/IBAGateMnt"
+            $ref: "./definitions/iba.yml#/IBAGateMnt"
     400:
       description: "Bad params supplied"
       schema:

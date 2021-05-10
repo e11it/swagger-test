@@ -20,7 +20,7 @@ get:
           items:
             type: array
             items:
-              $ref: "../../definitions/iba.yml#/IBAServer"
+              $ref: "./definitions/iba.yml#/IBAServer"
     400:
       description: "Bad params supplied"
       schema:
