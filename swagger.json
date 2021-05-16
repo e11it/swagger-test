@@ -1208,6 +1208,56 @@
             }
           }
         }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Create or update Gate",
+        "operationId": "createOrUpdateIBAGate",
+        "parameters": [
+          {
+            "description": "IBA Gate Meta object",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/iBAGate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/iBAGate"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
       }
     },
     "/ibas/gates/{gate_name}": {
@@ -1241,61 +1291,6 @@
           },
           "404": {
             "description": "IBA Gate not found",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Create or update Gate",
-        "operationId": "createIBAGate",
-        "parameters": [
-          {
-            "description": "IBA Gate Meta object",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "comment": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/iBAGate"
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          },
-          "404": {
-            "description": "Not found",
             "schema": {
               "$ref": "#/definitions/errorResponse"
             }

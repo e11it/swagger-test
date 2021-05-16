@@ -28,3 +28,38 @@ get:
       description: "IBA Server gates not found"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
+
+put:
+  tags:
+  - "iba"
+  summary: "Create or update Gate"
+  description: ""
+  operationId: "createOrUpdateIBAGate"
+  consumes:
+    - "application/json"
+  produces:
+    - "application/json"
+  parameters:
+    - in: body
+      name: body
+      description: "IBA Gate Meta object"
+      required: true
+      schema:
+        $ref: "../../definitions/iba.yml#/IBAGate"
+  responses:
+    200:
+      description: "OK"
+      schema:
+        $ref: "../../definitions/iba.yml#/IBAGate"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"

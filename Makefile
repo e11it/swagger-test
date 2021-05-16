@@ -9,4 +9,4 @@ serve:
 	swagger serve ./swagger.json --port=8080 --base-path=/ -F=redoc --no-open
 
 server:
-	swagger generate servger -f ./swagger.json -A meta --target=./gen/swagger
+	swagger generate server -f ./swagger.json -A meta --target=./gen/swagger
