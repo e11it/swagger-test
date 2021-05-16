@@ -2130,11 +2130,13 @@
         "comment": {
           "description": "Комментарий",
           "type": "string",
+          "x-nullable": true,
           "example": "Some notes"
         },
         "id": {
           "description": "IBA Gate ID",
           "type": "integer",
+          "x-nullable": true,
           "example": 1
         },
         "name": {

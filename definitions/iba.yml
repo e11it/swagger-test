@@ -47,6 +47,7 @@ IBAGate:
       type: "integer"
       example: 1
       description: "IBA Gate ID"
+      x-nullable: true
     name:
       type: "string"
       example: "p3apr3-pda-vc.p3.ia.nlmk"
@@ -55,6 +56,7 @@ IBAGate:
       type: "string"
       example: "Some notes"
       description: "Комментарий"
+      x-nullable: true
 
 IBAGateSource:
   type: object
