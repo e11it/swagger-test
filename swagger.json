@@ -1224,12 +1224,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "$ref": "#/definitions/iBAGate"
-                }
-              }
+              "$ref": "#/definitions/iBAGate"
             }
           },
           "400": {
