@@ -2151,7 +2151,8 @@
       "type": "object",
       "required": [
         "mnt",
-        "iba_server_id"
+        "iba_source_id",
+        "iba_gate_id"
       ],
       "properties": {
         "comment": {
@@ -2159,8 +2160,13 @@
           "type": "string",
           "example": "Some notes"
         },
-        "iba_server_id": {
-          "description": "IBA сервер ID",
+        "iba_gate_id": {
+          "description": "gate ID",
+          "type": "integer",
+          "example": 1
+        },
+        "iba_source_id": {
+          "description": "ID источника данных",
           "type": "integer",
           "example": 1
         },

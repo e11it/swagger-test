@@ -56,16 +56,21 @@ IBAGateMnt:
   type: object
   required:
     - "mnt"
-    - "iba_server_id"
+    - "iba_source_id"
+    - "iba_gate_id"
   properties:
     mnt:
       type: "string"
       example: "dp-khx"
       description: "mnt"
-    iba_server_id:
+    iba_source_id:
       type: "integer"
       example: 1
-      description: "IBA сервер ID"
+      description: "ID источника данных"
+    iba_gate_id:
+      type: "integer"
+      example: 1
+      description: "gate ID"
     comment:
       type: "string"
       example: "Some notes"
