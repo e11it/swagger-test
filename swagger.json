@@ -1268,7 +1268,7 @@
         "tags": [
           "iba"
         ],
-        "summary": "Get Gate",
+        "summary": "Get IBA Gate by name",
         "operationId": "getIBAGateByName",
         "responses": {
           "200": {
@@ -1291,6 +1291,45 @@
           },
           "404": {
             "description": "IBA Gate not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Delete IBA Gate by name",
+        "operationId": "deleteIBAGateByName",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
             "schema": {
               "$ref": "#/definitions/errorResponse"
             }

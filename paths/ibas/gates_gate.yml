@@ -8,7 +8,7 @@ parameters:
 get:
   tags:
   - "iba"
-  summary: "Get Gate"
+  summary: "Get IBA Gate by name"
   description: ""
   operationId: "getIBAGateByName"
   produces:
@@ -28,5 +28,33 @@ get:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
     404:
       description: "IBA Gate not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+
+delete:
+  tags:
+    - "iba"
+  summary: "Delete IBA Gate by name"
+  description: ""
+  operationId: "deleteIBAGateByName"
+  produces:
+    - "application/json"
+  responses:
+    200:
+      description: "OK"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
