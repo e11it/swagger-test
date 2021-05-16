@@ -1325,8 +1325,8 @@
         "tags": [
           "iba"
         ],
-        "summary": "Get all mnt for IBA Gates",
-        "operationId": "getIBAGateMnts",
+        "summary": "Get all sources and mnts for IBA Gate",
+        "operationId": "getIBASourcesAndMntsByGate",
         "responses": {
           "200": {
             "description": "OK",
@@ -1336,7 +1336,7 @@
                 "items": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/iBAGateMnt"
+                    "$ref": "#/definitions/iBAGateSource"
                   }
                 }
               }
@@ -1380,18 +1380,13 @@
         "tags": [
           "iba"
         ],
-        "summary": "Get mnt for IBAGate",
-        "operationId": "getIBAGateMnt",
+        "summary": "Get source by IBA Gate name and mnt",
+        "operationId": "getGateSourceByGateNameAndMnt",
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "$ref": "#/definitions/iBAGateMnt"
-                }
-              }
+              "$ref": "#/definitions/iBAGateSource"
             }
           },
           "400": {
@@ -1424,9 +1419,16 @@
         "tags": [
           "iba"
         ],
-        "summary": "Create or Update Mnt Gate",
-        "operationId": "updateIBAGateMnt",
+        "summary": "Create or Update Gate Source by IBA Gate name and mnt",
+        "operationId": "createOrUpdateGateSourceByGateNameAndMnt",
         "parameters": [
+          {
+            "type": "boolean",
+            "default": false,
+            "description": "flag to register source if not exists",
+            "name": "register",
+            "in": "query"
+          },
           {
             "description": "IBA GateMeta object.",
             "name": "body",
@@ -1438,8 +1440,8 @@
                 "comment": {
                   "type": "string"
                 },
-                "iba_server_id": {
-                  "type": "integer"
+                "name": {
+                  "type": "string"
                 }
               }
             }
@@ -1449,7 +1451,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/iBAGateMnt"
+              "$ref": "#/definitions/iBAGateSource"
             }
           },
           "400": {
@@ -1475,14 +1477,14 @@
       "parameters": [
         {
           "type": "string",
-          "description": "IBAGate name",
+          "description": "IBA Gate name",
           "name": "gate_name",
           "in": "path",
           "required": true
         },
         {
           "type": "string",
-          "description": "IBAGate mnt",
+          "description": "IBA Gate mnt",
           "name": "mnt",
           "in": "path",
           "required": true
@@ -2140,6 +2142,11 @@
           "type": "string",
           "example": "Some notes"
         },
+        "id": {
+          "description": "IBA Gate ID",
+          "type": "integer",
+          "example": 1
+        },
         "name": {
           "description": "Имя IBA Gate",
           "type": "string",
@@ -2147,7 +2154,7 @@
         }
       }
     },
-    "iBAGateMnt": {
+    "iBAGateSource": {
       "type": "object",
       "required": [
         "mnt",

@@ -1,31 +1,28 @@
 parameters:
   - name: gate_name
     in: path
-    description: "IBAGate name"
+    description: "IBA Gate name"
     type: string
     required: true
   - name: mnt
     in: path
-    description: "IBAGate mnt"
+    description: "IBA Gate mnt"
     type: string
     required: true
 
 get:
   tags:
   - "iba"
-  summary: "Get mnt for IBAGate"
+  summary: "Get source by IBA Gate name and mnt"
   description: ""
-  operationId: "getIBAGateMnt"
+  operationId: "getGateSourceByGateNameAndMnt"
   produces:
   - "application/json"
   responses:
     200:
       description: "OK"
       schema:
-        type: object
-        properties:
-          items:
-            $ref: "./definitions/iba.yml#/IBAGateMnt"
+        $ref: "../../definitions/iba.yml#/IBAGateSource"
     400:
       description: "Bad params supplied"
       schema:
@@ -42,14 +39,20 @@ get:
 put:
   tags:
   - "iba"
-  summary: "Create or Update Mnt Gate"
+  summary: "Create or Update Gate Source by IBA Gate name and mnt"
   description: ""
-  operationId: "updateIBAGateMnt"
+  operationId: "createOrUpdateGateSourceByGateNameAndMnt"
   consumes:
     - "application/json"
   produces:
     - "application/json"
   parameters:
+    - name: register
+      in: query
+      description: "flag to register source if not exists"
+      type: boolean
+      required: false
+      default: false
     - in: body
       name: body
       description: "IBA GateMeta object."
@@ -57,15 +60,15 @@ put:
       schema:
         type: object
         properties:
-          iba_server_id:
-            type: "integer"
+          name:
+            type: "string"
           comment:
             type: "string"
   responses:
     200:
       description: "OK"
       schema:
-        $ref: "../../definitions/iba.yml#/IBAGateMnt"
+        $ref: "../../definitions/iba.yml#/IBAGateSource"
     400:
       description: "Bad params supplied"
       schema:

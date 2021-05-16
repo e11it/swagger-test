@@ -43,6 +43,10 @@ IBAGate:
   required:
     - "name"
   properties:
+    id:
+      type: "integer"
+      example: 1
+      description: "IBA Gate ID"
     name:
       type: "string"
       example: "p3apr3-pda-vc.p3.ia.nlmk"
@@ -52,17 +56,13 @@ IBAGate:
       example: "Some notes"
       description: "Комментарий"
 
-IBAGateMnt:
+IBAGateSource:
   type: object
   required:
     - "mnt"
     - "iba_source_id"
     - "iba_gate_id"
   properties:
-    mnt:
-      type: "string"
-      example: "dp-khx"
-      description: "mnt"
     iba_source_id:
       type: "integer"
       example: 1
@@ -71,6 +71,10 @@ IBAGateMnt:
       type: "integer"
       example: 1
       description: "gate ID"
+    mnt:
+      type: "string"
+      example: "dp-khx"
+      description: "mnt"
     comment:
       type: "string"
       example: "Some notes"

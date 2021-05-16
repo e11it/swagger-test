@@ -16,6 +16,13 @@ paths:
 
   ########################################################
   # iba
+
+#  /ibas/sources/:
+#    $ref: paths/ibas/sources.yml
+
+#  /ibas/sources/{source_id}:
+#    $ref: paths/ibas/iba.yml
+
   /ibas/servers/:
     $ref: paths/ibas/servers.yml
 
