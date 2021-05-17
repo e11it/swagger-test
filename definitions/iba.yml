@@ -82,3 +82,27 @@ IBAGateSource:
       example: "Some notes"
       description: "Комментарий"
       
+#Source:
+#  type: object
+#  required:
+#    - "name"
+#    - "source_class"
+#    - "iba_gate_id"
+#  properties:
+#    iba_source_id:
+#      type: "integer"
+#      example: 1
+#      description: "ID источника данных"
+#    iba_gate_id:
+#      type: "integer"
+#      example: 1
+#      description: "gate ID"
+#    mnt:
+#      type: "string"
+#      example: "dp-khx"
+#      description: "mnt"
+#    comment:
+#      type: "string"
+#      example: "Some notes"
+#      description: "Комментарий"
+

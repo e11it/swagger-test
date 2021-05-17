@@ -1452,13 +1452,6 @@
         "operationId": "createOrUpdateGateSourceByGateNameAndMnt",
         "parameters": [
           {
-            "type": "boolean",
-            "default": false,
-            "description": "flag to register source if not exists",
-            "name": "register",
-            "in": "query"
-          },
-          {
             "description": "IBA GateMeta object.",
             "name": "body",
             "in": "body",
@@ -1497,6 +1490,45 @@
           },
           "404": {
             "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Delete Gate Source by GateNameAndMnt",
+        "operationId": "deleteGateSourceByGateNameAndMnt",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
             "schema": {
               "$ref": "#/definitions/errorResponse"
             }

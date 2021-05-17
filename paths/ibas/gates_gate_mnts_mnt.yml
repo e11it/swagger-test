@@ -47,12 +47,12 @@ put:
   produces:
     - "application/json"
   parameters:
-    - name: register
-      in: query
-      description: "flag to register source if not exists"
-      type: boolean
-      required: false
-      default: false
+#    - name: register
+#      in: query
+#      description: "flag to register source if not exists"
+#      type: boolean
+#      required: false
+#      default: false
     - in: body
       name: body
       description: "IBA GateMeta object."
@@ -79,5 +79,33 @@ put:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
     404:
       description: "Not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+
+delete:
+  tags:
+    - "iba"
+  summary: "Delete Gate Source by GateNameAndMnt"
+  description: ""
+  operationId: "deleteGateSourceByGateNameAndMnt"
+  produces:
+    - "application/json"
+  responses:
+    200:
+      description: "OK"
+    400:
+      description: "Bad params supplied"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    401:
+      description: "Unauthorized"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    404:
+      description: "Not found"
+      schema:
+        $ref: "../../definitions/errors.yml#/ErrorResponse"
+    500:
+      description: "Internal server error"
       schema:
         $ref: "../../definitions/errors.yml#/ErrorResponse"
